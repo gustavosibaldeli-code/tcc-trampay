@@ -1,30 +1,20 @@
-# 🚀 Trampay - Sistema Web de Serviços
+# 🚀 Trampay — Sistema Web de Marketplace de Serviços
 
-## 📌 Sobre o Projeto
+## 📖 Visão Geral
 
-O **Trampay** é um sistema web desenvolvido com o objetivo de conectar clientes a profissionais de diferentes áreas, funcionando como um marketplace de serviços. A plataforma permite o cadastro de usuários, gerenciamento de perfis profissionais, agendamento de serviços e controle de pagamentos.
+O **Trampay** é uma aplicação web full stack desenvolvida para conectar clientes a profissionais de diversas áreas, funcionando como um marketplace de serviços. A plataforma permite cadastro de usuários, criação de perfis profissionais, busca por serviços, agendamentos e processamento de pagamentos.
 
-Este projeto foi desenvolvido como Trabalho de Conclusão de Curso (TCC), aplicando conceitos reais de desenvolvimento full stack.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-* **PHP** (Back-end)
-* **MySQL** (Banco de dados)
-* **HTML, CSS e JavaScript** (Front-end)
-* **XAMPP** (Ambiente local)
-* Integração com sistema de pagamentos (Pix e cartão)
+Este projeto foi desenvolvido como Trabalho de Conclusão de Curso (TCC), com o objetivo de aplicar, na prática, conceitos de engenharia de software, desenvolvimento web e modelagem de banco de dados em um sistema real.
 
 ---
 
-## 👤 Funcionalidades Principais
+## 🧩 Funcionalidades Principais
 
-### 🔐 Sistema de Cadastro e Login
+### 🔐 Autenticação e Gerenciamento de Usuários
 
-* Cadastro de **clientes** e **profissionais**
-* Autenticação com validação de dados
-* Recuperação de senha
+* Cadastro e login de **clientes** e **profissionais**
+* Sistema de autenticação com validação de dados
+* Recuperação e redefinição de senha
 
 ---
 
@@ -32,26 +22,26 @@ Este projeto foi desenvolvido como Trabalho de Conclusão de Curso (TCC), aplica
 
 * Criação e edição de perfil
 * Upload de foto (avatar)
-* Cadastro de serviços oferecidos
-* Gerenciamento de portfólio
-* Visualização de avaliações
+* Cadastro e gerenciamento de serviços oferecidos
+* Upload de portfólio
+* Visualização de avaliações recebidas
 
 ---
 
 ### 👥 Área do Cliente
 
-* Cadastro e login
+* Cadastro e autenticação
 * Busca por profissionais
 * Visualização de perfis públicos
-* Acesso a avaliações e serviços
+* Acesso a serviços e avaliações
 
 ---
 
-### 🔎 Sistema de Busca
+### 🔎 Sistema de Busca e Descoberta
 
 * Listagem de profissionais por categoria
-* Visualização detalhada do perfil
-* Informações como localização, serviços e avaliações
+* Filtros e navegação por serviços
+* Visualização detalhada de perfis (serviços, localização e avaliações)
 
 ---
 
@@ -65,38 +55,67 @@ Este projeto foi desenvolvido como Trabalho de Conclusão de Curso (TCC), aplica
 
 ### 💳 Sistema de Pagamentos
 
-* Pagamento via **Pix**
-* Pagamento via **cartão**
-* Confirmação automática de pagamento
-* Webhook para atualização de status
+* Integração com pagamentos via **Pix** e **cartão**
+* Confirmação de pagamentos
+* Atualização automática de status via webhook
 
 ---
 
 ### ⭐ Sistema de Avaliações
 
 * Clientes podem avaliar profissionais
-* Listagem de avaliações nos perfis
+* Exibição pública de avaliações nos perfis
 
 ---
 
-## 🗂️ Estrutura do Projeto
+## 🏗️ Arquitetura do Sistema
 
-O sistema é organizado em:
+O projeto segue uma estrutura organizada baseada em separação de responsabilidades:
 
-* Arquivos PHP (lógica do sistema)
-* Arquivos HTML (interfaces)
-* Imagens e assets
-* Scripts de banco de dados (`.sql`)
+* **Camada de Apresentação:** HTML, CSS e JavaScript
+* **Camada de Aplicação:** PHP (regras de negócio e controle)
+* **Camada de Dados:** MySQL (armazenamento e consultas)
+
+Essa abordagem facilita manutenção, escalabilidade e organização do código.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Camada         | Tecnologia            |
+| -------------- | --------------------- |
+| Front-end      | HTML, CSS, JavaScript |
+| Back-end       | PHP                   |
+| Banco de Dados | MySQL                 |
+| Ambiente Local | XAMPP                 |
+| Pagamentos     | Pix e Cartão          |
+| E-mails        | PHPMailer             |
+
+---
+
+## 📂 Estrutura do Projeto
+
+```
+/TCC
+ ├── /PHPMailer
+ ├── /uploads
+ ├── arquivos PHP (lógica do sistema)
+ ├── arquivos HTML (interfaces)
+ ├── banco de dados (.sql)
+ └── assets (imagens e recursos visuais)
+```
 
 ---
 
 ## ⚙️ Como Executar o Projeto
 
-### Pré-requisitos:
+### 📋 Pré-requisitos
 
-* XAMPP instalado
+* XAMPP instalado (Apache e MySQL)
 
-### Passos:
+---
+
+### ▶️ Passo a Passo
 
 1. Copiar o projeto para:
 
@@ -104,17 +123,17 @@ O sistema é organizado em:
 C:\xampp\htdocs\
 ```
 
-2. Iniciar o XAMPP:
+2. Iniciar os serviços no XAMPP:
 
 * Apache ✔️
 * MySQL ✔️
 
 3. Importar o banco de dados:
 
-* Acessar o phpMyAdmin
+* Acessar o **phpMyAdmin**
 * Importar o arquivo `trampay.sql`
 
-4. Acessar no navegador:
+4. Executar no navegador:
 
 ```
 http://localhost/TCC
@@ -122,33 +141,38 @@ http://localhost/TCC
 
 ---
 
-## 🎯 Objetivo do Projeto
+## 🎯 Objetivos do Projeto
 
-Demonstrar, na prática, a construção de um sistema web completo, aplicando:
-
-* Lógica de programação
-* Integração com banco de dados
-* Desenvolvimento de interfaces
-* Estruturação de sistemas reais
+* Desenvolver uma aplicação web completa (full stack)
+* Aplicar conceitos de engenharia de software
+* Implementar funcionalidades reais como autenticação, agendamento e pagamentos
+* Simular um sistema de marketplace utilizado no mundo real
 
 ---
 
-## 📈 Possíveis Melhorias Futuras
+## 🚀 Melhorias Futuras
 
 * Implementação de API REST
-* Melhoria na interface (UI/UX)
+* Melhoria de interface e experiência do usuário (UI/UX)
 * Deploy em servidor online
 * Sistema de notificações em tempo real
+* Otimizações de performance e segurança
 
 ---
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Gustavo Godoi Sibaldeli**
+**Gustavo Godoi Sibaldeli**
 Estudante de Engenharia de Software
 
 ---
 
-## 📌 Observação
+## 📄 Licença
 
-Este projeto tem fins educacionais e demonstração de habilidades em desenvolvimento web.
+Este projeto foi desenvolvido para fins educacionais e demonstração de habilidades técnicas.
+
+---
+
+## 📌 Considerações Finais
+
+O **Trampay** representa a construção de um sistema completo e funcional, integrando múltiplas funcionalidades essenciais de uma aplicação real. O projeto demonstra na prática a capacidade de desenvolver, estruturar e implementar soluções web com foco em usabilidade e organização.
