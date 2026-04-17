@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilo3.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trampay</title>
+  </head>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap');
+        @import url('https://fonts.cdnfonts.com/css/satoshi');
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: rgb(221, 220, 230);
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #02001b;
+            border-radius: 50px;
+        }
+
+
+        html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+    .html{
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:#f4f4f4;
+      color: #02001b;
+      overflow-x: hidden;
+      
+       
+    }
+
+           header {
+            font-family: "Bacasime Antique", serif;
+            font-size: 10px;
+            font-style: normal;
+            width: 100%;
+            height: 20px;
+            color: rgb(0, 0, 0);;
+        }
+
+       /* HEADER em 3 colunas */
+.header-top{
+  position: fixed; top:0; left:0; width:100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* esquerda | centro | direita */
+  align-items: center;
+  padding: 14px 24px;
+  height: 86px;            /* altura do header */
+  z-index: 9999;
+  background: transparent; /* fica escuro ao rolar com .scrolled */
+}
+
+/* menu fica colado à esquerda */
+.navbar{ justify-self: start; }
+.nav-menu{ margin:0; gap:32px; }
+
+/* LOGO centralizada e sem posição absoluta */
+.logo{
+  justify-self: center;
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* coluna da direita: ícones (perfil, etc.) */
+.header-right{
+  justify-self: end;
+  display: flex; align-items: center; gap: 14px;
+}
+
+/* quando rolar: cor de fundo do topo */
+.header-top.scrolled{
+  background-color:#02001b !important;
+  transition: background-color .2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+/* Evitar que o herói suba por baixo do header */
+body{ padding-top: 90px; }   /* ~altura do header */
+
+
+        /* (copiado do sobre.html) */
+  .modal-perfil{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:10001; align-items:center; justify-content:center; }
+  .perfil-conteudo{ width:min(920px,94vw); background:#fff; border-radius:24px; padding:0 0 18px; box-shadow:0 20px 60px rgba(0,0,0,.35); border:1px solid #e8eaf7; font-family:"Satoshi",system-ui; position:relative; overflow:hidden; }
+  .perfil-conteudo .fechar{ position:absolute; top:12px; right:14px; font-size:28px; cursor:pointer; color:#fff; z-index:3; text-shadow:0 6px 18px rgba(0,0,0,.45) }
+  .perfil-header{ position:relative; display:grid; grid-template-columns:auto 1fr; column-gap:18px; row-gap:10px; align-items:center; padding:20px 24px 18px; background:linear-gradient(90deg,#000a25fd,#000c2ccc); color:#fff; box-shadow:0 8px 30px rgba(0,0,0,.2) inset; }
+  .avatar-wrap{ position:relative; z-index:1 }
+  #perfilAvatar{ width:110px; height:110px; object-fit:cover; border-radius:999px; border:3px solid rgba(255,255,255,.9); box-shadow:0 10px 24px rgba(0,0,0,.35); background:#14223f }
+  .trocar-foto-btn{ position:absolute; right:-6px; bottom:-6px; display:flex; align-items:center; gap:6px; background:#f4f4f4; color:#00133a; border-radius:999px; padding:6px 10px; cursor:pointer; font-family:"Bebas Neue"; letter-spacing:.4px; box-shadow:0 10px 20px rgba(0,0,0,.25) }
+  .perfil-head-info .titulo{ font-family:"Bebas Neue",sans-serif; font-size:2.6rem; letter-spacing:1px; margin:0 0 4px }
+  .perfil-head-info .sub{ opacity:.9; margin:0; font-size:1rem }
+  .perfil-tabs{ display:flex; align-items:center; gap:10px; padding:10px 14px; margin:10px 14px 0; background:#f6f8ff; border-radius:14px; border:1px solid #eef1ff }
+  .tab-btn{ border:none; background:#eef1ff; color:#00185c; padding:10px 16px; border-radius:999px; cursor:pointer; font-family:"Bebas Neue"; letter-spacing:.8px; font-size:1.05rem; box-shadow:0 1px 0 rgba(0,0,0,.04) inset }
+  .tab-btn.active{ background:#00133a; color:#fff } .tab-btn.sair{ margin-left:auto; background:#e74c3c; color:#fff }
+  .tab-pane{ display:none } .tab-pane.active{ display:block }
+  .section-wrap{ padding:14px 22px 8px } .perfil-info p{ margin:.45rem 0; font-size:1.02rem; color:#333 }
+  .perfil-info strong{ color:#0b156e; font-family:"Bebas Neue"; letter-spacing:.6px }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px } .grid-3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px }
+  @media (max-width:780px){ .grid-2,.grid-3{ grid-template-columns:1fr } }
+  .form-group{ display:flex; flex-direction:column; gap:6px }
+  .form-group label{ font-family:"Zain",sans-serif; font-size:1rem; color:#00185c }
+  .form-group input{ border:none; border-bottom:2px solid #d3d3d3; padding:10px 6px; outline:none; background:transparent; font-size:1rem; color:#111 }
+  .form-group input:focus{ border-color:#00185c }
+  .divider{ margin:14px 0 8px; padding:8px 0; font-family:"Bebas Neue"; color:#02001b; letter-spacing:.8px; font-size:1.2rem; border-top:1px dashed #e3e3e3 }
+  .btn-row{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px }
+  .btn{ border:none; padding:12px 18px; border-radius:12px; cursor:pointer; font-family:"Zain"; box-shadow:1px 1px 6px #00000022 }
+  .btn.primary{ background:linear-gradient(90deg,#000a25fd,#000c2ccc); color:#fff }
+  .btn.ghost{ background:#f3f3f3; color:#00185c }
+
+  /* Login (mesmo do sobre) */
+  .logincontainer{ display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10002; width:min(420px,92vw); padding:28px 26px 24px; border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.06)), linear-gradient(90deg,#000a25fd,#000c2ccc); box-shadow:0 24px 64px rgba(0,0,0,.40); border:1px solid rgba(255,255,255,.12); color:#f4f4f4; backdrop-filter:blur(8px) }
+  .logincontainer.abrir{ display:flex; flex-direction:column }
+  .logincontainer h2{ font-family:"Bebas Neue"; font-size:2rem; text-align:center; margin:4px 0 18px; color:#fff; position:relative }
+  .logincontainer h2::after{ content:""; display:block; width:58px; height:3px; margin:8px auto 0; border-radius:999px; background:linear-gradient(90deg,#a3ddff,#ffffff); opacity:.9 }
+  .logincontainer label{ display:block; font-family:"Zain"; font-size:.95rem; color:#d7e3ff; margin:10px 2px 6px }
+  .logincontainer input{ width:100%; padding:12px 10px 10px; border:none; border-bottom:2px solid rgba(255,255,255,.28); border-radius:10px 10px 0 0; background:rgba(255,255,255,.06); color:#fff; font-size:1rem; outline:none }
+  .logincontainer button{ width:100%; padding:14px 16px; margin-top:10px; border:none; border-radius:14px; cursor:pointer; font-size:1.02rem; font-weight:700; font-family:"Zain"; color:#fff; background:linear-gradient(90deg,#000a25fd,#000c2ccc); box-shadow:0 10px 24px rgba(0,0,0,.28) }
+  .forgot-password{ margin:12px 0 2px; font-size:.86rem; color:#d7e3ff; text-decoration:none }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+
+
+            color: white;
+
+            z-index: 100000;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin-top: -20px;
+        }
+
+
+        .nav-menu a {
+            font-size: 20px;
+            font-family: Bebas Neue;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;         
+            background: #00185c22; 
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+      }
+
+        @keyframes gradientMove {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .brand h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+        .container {
+  background: #000102;
+  width: 100vw;
+  max-width: 100vw;
+  min-width: 100vw;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 0;      /* Remove side padding */
+  overflow: hidden;
+  margin-top: -20px;
+  margin-left: 0;    /* Remove negative margin if present */
+  margin-right: 0;
+  position: relative;
+}
+
+
+    .container img {
+      height: 700px;
+      width: 800px;
+      object-fit: contain;
+      margin-left: -20px;
+      margin-bottom: -60px;
+      rotate: -0.8deg;
+    }
+
+    .text-block {
+      margin-left: 40px;
+      padding-bottom: 40px;
+      flex: 1;
+    }
+
+    .text-block h1 {
+      font-family: Bebas Neue;
+      font-size: 48px;
+      font-weight: bold;
+      margin: 0 0 20px;
+      line-height: 1.2;
+    }
+
+    .text-block p {
+      font-size: 22px;
+      line-height: 1.5;
+      margin: 8px 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 40px 20px;
+        
+      }
+
+      .container img {
+        height: auto;
+        max-height: 500px;
+        margin-bottom: 0;
+
+      }
+
+    }
+
+    main {
+  padding: 0;
+  max-width: none;
+  margin: 0;
+      
+    }
+
+    main h3{
+        font-family: ZAIN;
+        color: #6e6e6e;
+        text-align: center;
+        margin-top: -20px;
+        margin-bottom: 40px;
+    }
+
+
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.20rem;
+      justify-content: center;
+      margin-left: 3px;
+      margin-bottom: 20PX;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      margin: 0;
+      
+
+     
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-media {
+      background: url("aboutbg.png");
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .card-media img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: -0.25rem;
+      color: #011b3d;
+      text-align: center;
+      font-family: Bebas Neue;
+      letter-spacing: 0.1rem;
+    }
+
+    .role {
+      color: #181a1fbd;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-family: Satoshi;
+    }
+
+    .info {
+      list-style: none;
+      margin-bottom: 1rem;
+      text-align: left;
+      margin-left: -30px;
+      margin-top: -15px;
+    }
+
+    .info li {
+      margin-bottom: 0.25rem;
+      font-size: 0.90rem;
+      font-family: Satoshi;
+    }
+
+    .rating {
+      display: flex;
+      margin-top: 1.5rem;
+    }
+
+    .star {
+      background: none;
+      border: none;
+      cursor: default;
+      font-size: 1.25rem;
+      color: #e5e7eb;
+      padding: 0;
+      margin-right: 0.125rem;
+    }
+
+    .star.active {
+      color: #ffbb00;
+    }
+
+    .rating-value {
+      margin-left: 0.5rem;
+      font-weight: 600;
+      color: #000e3a;
+      font-family: oswald;
+      margin-top:3px;
+    }
+
+    .avaliacoes {
+        width: 100vw;
+
+    }
+    .avaliacoes h2{
+        color: #02001b;
+        font-family: Bebas Neue;
+        margin-top: 30px;
+       text-align: center;
+       font-size: 4.5rem;
+
+    }
+
+    .container-a {
+        background:
+        linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.692)),
+        url('aboutbg.png') center/cover no-repeat; 
+        background-color: #000000;
+        box-shadow:  0 10px 32px 0 rgba(0, 0, 0, 0.418);
+        width: 100vw;
+        max-width: 100vw;
+        min-width: 100vw;
+        height: 100vh;
+        color: white;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 0 0;      
+        overflow: hidden;
+        margin-top: -20px;
+        margin-left: 0;    
+        margin-right: 0;
+        position: relative;
+    }
+
+        .footer {
+          background:
+          linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+          url('aboutbg.png') center/cover no-repeat;
+          border-radius: 18px;
+          box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+          padding: 40px 20px;
+          color: #f4f4f4;
+          font-family: Satoshi;
+          font-size: 1.0rem;
+          margin-top:50px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+            
+        }
+
+        .footer-section {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-family: ZAIN;
+            letter-spacing: 0.rem;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #333333;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover img {
+            transform: scale(1.2);
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 70%;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background-color: #000c2c;
+            color: #f1f5ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 15px;
+            font-family: zain;
+
+        }
+
+        .newsletter-form button:hover {
+            background-color: #d8b800;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+
+        @keyframes showTopText {
+        0% { transform: translate3d(0, 100%, 0); }
+        40%, 60% { transform: translate3d(0, 50%, 0); }
+        100% { transform: translate3d(0, 0, 0); }
+    }
+        @keyframes showBottomText {
+        0% { transform: translate3d(0, -100%, 0); }
+        100% { transform: translate3d(0, 0, 0); }
+    }
+    .animated-title {
+        color: #f4f4f4;
+        font-family: Bebas Neue;
+        height: 90vmin;
+        margin-left: 60%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vmin;
+        margin-top:50px;
+        margin-left: 75%;
+        
+    }
+    .animated-title > div {
+        height: 50%;
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+    }
+    .animated-title > div div {
+        font-size: 12vmin;
+        padding: 2vmin 0;
+        position: absolute;
+    }
+    .animated-title > div div span {
+        display: block;
+    }
+    .animated-title > div.text-top {
+        border-bottom: 1vmin solid #ffffff;
+        top: 0;
+    }
+    .animated-title > div.text-top div {
+        animation: showTopText 1s;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+        bottom: 0;
+        transform: translate(0, 100%);
+    }
+    .animated-title > div.text-top div span:first-child {
+        color: #ffffff;
+    }
+    .animated-title > div.text-bottom {
+        bottom: 0;
+    }
+    .animated-title > div.text-bottom div {
+        animation: showBottomText 0.5s;
+        animation-delay: 1.75s;
+        animation-fill-mode: forwards;
+        top: 0;
+        transform: translate(0, -100%);
+    }
+
+    blockquote{
+  font-size: 1.2em;
+  text-align: left;
+  width:95vw;
+  margin:50px auto;
+  font-family:Satoshi;
+  margin-top: 90px;
+  color: #000000bb;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:8px solid #000c2c ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+  height: 50vh;
+  border-radius: 10px;
+  box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.24);
+}
+
+blockquote::before{
+  font-family:Satoshi;
+  content: "\201C";
+  color:#0d0949;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+blockquote span{
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  font-family: Bebas Neue;
+  margin-top: 50px;
+  
+}
+
+.relative {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.slide {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.slide-1 {
+  background: #000102;
+  margin-top: -90px;
+}
+.slide-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background: #000102;
+  border-left: 10px solid #000c2c7c;
+  font-family: Satoshi;
+  min-height: 100vh;
+  position: relative;
+  gap: 0;
+}
+
+.slide2-texts {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-2 spline-viewer {
+
+  width: 600px;
+  height: 100%;
+  margin-right: 40px;
+  background: #181a1f;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  display: block;
+}
+
+.slide-2 h2.description,
+.slide-2 h3 {
+  text-align: left;
+  margin-left: 40px;
+  margin-right: auto;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+
+}
+
+.slide-2 h2.description {
+  font-size: 4.5rem;
+  font-family: 'Bebas Neue';
+  color: #fff;
+  font-weight: 700;
+  margin-top:  -20px;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.slide-2 h3 {
+  color: #dfdfdf;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: -5px;
+  margin-bottom: 0;
+  line-height: 1.5;
+  font-family: Satoshi;
+  font-weight: 380;
+}
+.slide-3 {
+  background:  #f4f4f4;
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  position: relative;
+  z-index: 1;
+  border-left: 10px solid#000c2c;
+  box-shadow: 10px 0 32px 0 #3333338c;
+}
+
+.slide-3 h3{
+  font-family: Satoshi;
+  color: #555555;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+}
+
+.slide-3 .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 10px 10px 10px;
+  box-sizing: border-box;
+}
+
+.slide-3 .category-title {
+  font-size:5.0rem;
+        font-family: Bebas Neue;
+        color: #000102;
+        margin-top: -30px;
+}
+
+.slide-4 {
+  background: #f4f4f4;
+  color: #111;
+}
+
+.slide-4 .blockquotes-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.slide-4 blockquote {
+  width: 40vw;
+  min-width: 280px;
+  max-width: 500px;
+  margin: 30px 0;
+}
+.slide-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.slide-desc {
+  margin-top: 0.5rem;
+  font-size: 5.5rem;
+}
+
+.slide-4 h3{
+    font-family: Satoshi;
+    color: #555555;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+.slide-4 h2{
+    font-family: Bebas Neue;
+    color: #000102;
+    text-align: center;
+    margin-top: -20px;
+    font-size: 4.5rem;
+}
+
+    /* Botão/ícone de perfil — maior, branco, com hover */
+.header-right a#btnPerfil{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:42px; height:42px; border-radius:999px;
+  color:#fff; text-decoration:none;
+  border:1px solid rgba(255,255,255,.25);
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.header-right a#btnPerfil i{
+  font-size:22px; line-height:1;
+  color:#fff !important;           /* força branco (não herdar azul do Bootstrap) */
+}
+.header-right a#btnPerfil:hover{
+  transform: translateY(-1px);
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
+  background:rgba(255,255,255,.08);
+}
+
+/* Quando o header escurece no scroll, mantemos legível */
+.header-top.scrolled .header-right a#btnPerfil{
+  background:#0b156e; border-color:transparent;
+}
+
+/* Se estiver logado, mostra um “check” com bolinha de status */
+.header-right a#btnPerfil.logged { background:#0b156e; }
+.header-right a#btnPerfil.logged::after{
+  content:""; position:absolute; right:2px; bottom:2px;
+  width:10px; height:10px; border-radius:999px;
+  background:#2ecc71; border:2px solid #0b156e;
+}
+
+  </style>
+</head>
+<body>
+    <div class="header-top">
+  <!-- ESQUERDA: menu -->
+  <nav class="navbar">
+    <ul class="nav-menu">
+      <li><a href="homepage.html">INÍCIO</a></li>
+      <li><a href="profissionais.php">SERVIÇOS</a></li>
+      <li><a href="sobre.html">SOBRE NÓS</a></li>
+    </ul>
+  </nav>
+
+  <!-- CENTRO: logo -->
+  <div class="logo">
+    <img width="250" src="logo.png" alt="logo">
+  </div>
+
+  <!-- DIREITA: ícones (perfil) -->
+  <div class="header-right">
+    <a id="btnPerfil" href="#" title="Perfil"><i class="bi bi-person"></i></a>
+  </div>
+
+  <!-- seus modais de login/perfil ficam aqui embaixo como já estão -->
+  <!-- ... (loginContainer / modalPerfil) ... -->
+</div>
+
+           <!-- HTML dos modais (idênticos ao sobre) -->
+<div class="logincontainer" id="loginContainer">
+  <h2>Login</h2>
+  <form id="loginForm" method="POST">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="senha" required>
+    <button type="submit">Entrar</button>
+  </form>
+  <a href="esqueci_senha_cliente.html" class="forgot-password">Esqueci minha senha</a>
+  <p style="color:#d3d3d3; margin-top:12px; font-size:.9rem">Não tem conta? <a href="cadcliente.html" style="color:#fff; text-decoration:none">Cadastre-se</a></p>
+</div>
+
+<div class="modal-perfil" id="modalPerfil">
+  <div class="perfil-conteudo">
+    <span class="fechar" id="fecharPerfil">&times;</span>
+
+    <div class="perfil-header">
+      <div class="avatar-wrap">
+        <img id="perfilAvatar" src="avatar.png" alt="Foto do Perfil">
+        <label for="inputFoto" class="trocar-foto-btn"><i class="bi bi-camera"></i><span>Trocar foto</span></label>
+        <input id="inputFoto" type="file" accept="image/*" hidden>
+      </div>
+      <div class="perfil-head-info">
+        <p class="titulo" id="perfilHandle">@perfil</p>
+        <p class="sub">Gerencie seus dados</p>
+      </div>
+    </div>
+
+    <div class="perfil-tabs">
+      <button class="tab-btn active" data-tab="visao">Resumo</button>
+      <button class="tab-btn" data-tab="editar">Editar</button>
+      <button class="tab-btn sair" id="btnSair">Sair</button>
+    </div>
+
+    <div class="tab-pane active" id="tab-visao">
+      <div class="section-wrap perfil-info">
+        <p><strong>Nome:</strong> <span id="perfilNome">Usuário</span></p>
+        <p><strong>E-mail:</strong> <span id="perfilEmail">usuario@exemplo.com</span></p>
+        <p><strong>Tipo:</strong> <span id="perfilTipo">Cliente</span></p>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-editar">
+      <form id="formEditarPerfil" enctype="multipart/form-data" class="section-wrap">
+        <div class="grid-2">
+          <div class="form-group"><label for="editNome">Nome</label><input type="text" id="editNome" name="nome" placeholder="Seu nome completo"></div>
+          <div class="form-group"><label for="editEmail">E-mail</label><input type="email" id="editEmail" name="email" placeholder="seu@email.com"></div>
+        </div>
+        <div class="divider">Trocar senha (opcional)</div>
+        <div class="grid-3">
+          <div class="form-group"><label for="senhaAtual">Senha atual</label><input type="password" id="senhaAtual" name="senha_atual" placeholder="••••••••"></div>
+          <div class="form-group"><label for="novaSenha">Nova senha</label><input type="password" id="novaSenha" name="nova_senha" placeholder="••••••••"></div>
+          <div class="form-group"><label for="confirmaSenha">Confirmar nova senha</label><input type="password" id="confirmaSenha" name="confirma_nova_senha" placeholder="••••••••"></div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn ghost" id="btnCancelarEdicao">Cancelar</button>
+          <button type="submit" class="btn primary" id="btnSalvarPerfil"><i class="bi bi-check2-circle"></i> Salvar alterações</button>
+        </div>
+        <small class="hint">Para alterar e-mail e/ou senha, preencha a <b>Senha atual</b> por segurança.</small>
+      </form>
+    </div>
+  </div>
+</div>
+        </div>
+    </header>
+
+
+<div class="relative">
+  <div class="slide slide-1">
+     <div class="container">
+            <img src="dev.png">
+            <div class="animated-title">
+                <div class="text-top">
+                    <div>
+                        <span>Do front ao back-end?</span>
+                        <span>Nós desenvolvemos</span>
+                    </div>
+                </div>
+                <div class="text-bottom">
+                    <div>trampay.</div>
+                </div>
+            </div>
+        </div>
+  </div>
+  <div class="slide slide-2">
+  <div class="slide2-texts">
+    <h2 class="description">Por que a trampay?</h2>
+    <h3>
+      Porque conectamos você aos melhores desenvolvedores do mercado, garantindo agilidade, segurança e transparência em cada etapa.
+      Na Trampay, cada profissional passa por uma análise criteriosa antes de ser apresentado, assegurando que apenas aqueles que atendem aos nossos padrões de excelência estejam disponíveis para os clientes. Assim, você tem a tranquilidade de contar com desenvolvedores altamente qualificados, preparados para oferecer soluções assertivas e inovadoras.
+      Com a Trampay, seu projeto avança com qualidade e confiança, do início à entrega final.
+    </h3>
+  </div>
+  <spline-viewer url="https://prod.spline.design/oE7Z9IQjVTAmUJ9x/scene.splinecode"></spline-viewer>
+</div>
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.57/build/spline-viewer.js"></script>
+
+
+
+      <div class="slide slide-3">
+        <h2 class="category-title">Desenvolvedores</h2>
+        <h3> Conheça nossos melhores desenvolvedores</h3>
+        <section class="grid">
+          <div class="card" data-id="1" data-rating="5">
+            <div class="card-media">
+              <img src="https://randomuser.me/api/portraits/men/69.jpg" alt="Foto de Bruno Costa" />
+            </div>
+            <div class="card-body">
+              <h2 class="name">Bruno Costa</h2>
+              <p class="role">Desenvolvedor Front-end</p>
+              <ul class="info">
+                <li>Email: bruno.costa@servicos.com</li>
+                <li>Telefone: (11) 99999-3001</li>
+                <li>Especialidade: React e Vue.js</li>
+              </ul>
+              <div class="rating" aria-label="Avaliação 5 de 5 estrelas">
+                <button class="star active" aria-label="1 estrela">★</button>
+                <button class="star active" aria-label="2 estrelas">★</button>
+                <button class="star active" aria-label="3 estrelas">★</button>
+                <button class="star active" aria-label="4 estrelas">★</button>
+                <button class="star active" aria-label="5 estrelas">★</button>
+                <span class="rating-value">5/5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-id="2" data-rating="4">
+            <div class="card-media">
+              <img src="https://randomuser.me/api/portraits/women/26.jpg" alt="Foto de Carla Nunes" />
+            </div>
+            <div class="card-body">
+              <h2 class="name">Carla Nunes</h2>
+              <p class="role">UX/UI Designer</p>
+              <ul class="info">
+                <li>Email: carla.nunes@servicos.com</li>
+                <li>Telefone: (11) 99999-3002</li>
+                <li>Especialidade: Design de interfaces</li>
+              </ul>
+              <div class="rating" aria-label="Avaliação 4 de 5 estrelas">
+                <button class="star active" aria-label="1 estrela">★</button>
+                <button class="star active" aria-label="2 estrelas">★</button>
+                <button class="star active" aria-label="3 estrelas">★</button>
+                <button class="star active" aria-label="4 estrelas">★</button>
+                <button class="star" aria-label="5 estrelas">☆</button>
+                <span class="rating-value">4/5</span>
+              </div>
+            </div>
+        </div>
+
+          <div class="card" data-id="3" data-rating="5">
+            <div class="card-media">
+              <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Foto de Diego Ramos" />
+            </div>
+            <div class="card-body">
+              <h2 class="name">Diego Ramos</h2>
+              <p class="role">Desenvolvedor Back-end</p>
+              <ul class="info">
+                <li>Email: diego.ramos@servicos.com</li>
+                <li>Telefone: (11) 99999-3003</li>
+                <li>Especialidade: Node.js e Python</li>
+              </ul>
+              <div class="rating" aria-label="Avaliação 5 de 5 estrelas">
+                <button class="star active" aria-label="1 estrela">★</button>
+                <button class="star active" aria-label="2 estrelas">★</button>
+                <button class="star active" aria-label="3 estrelas">★</button>
+                <button class="star active" aria-label="4 estrelas">★</button>
+                <button class="star active" aria-label="5 estrelas">★</button>
+                <span class="rating-value">5/5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-id="4" data-rating="4">
+            <div class="card-media">
+              <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Foto de Elisa Prado" />
+            </div>
+            <div class="card-body">
+              <h2 class="name">Elisa Prado</h2>
+              <p class="role">Analista de Dados</p>
+              <ul class="info">
+                <li>Email: elisa.prado@servicos.com</li>
+                <li>Telefone: (11) 99999-3004</li>
+                <li>Especialidade: BI e Big Data</li>
+              </ul>
+              <div class="rating" aria-label="Avaliação 4 de 5 estrelas">
+                <button class="star active" aria-label="1 estrela">★</button>
+                <button class="star active" aria-label="2 estrelas">★</button>
+                <button class="star active" aria-label="3 estrelas">★</button>
+                <button class="star active" aria-label="4 estrelas">★</button>
+                <button class="star" aria-label="5 estrelas">☆</button>
+                <span class="rating-value">4/5</span>
+              </div>
+            </div>
+          </div>
+
+          
+          
+        </section>
+      </div>
+
+<div class="slide slide-4">
+  <h2>Avaliações</h2>
+  <h3 class="slide-desc">O que nossos clientes dizem</h3> 
+  <div class="blockquotes-row">
+    <blockquote>
+      Fiquei impressionado com a qualidade e a agilidade dos desenvolvedores da Trampay. O projeto foi entregue dentro do prazo, com atenção aos detalhes e total alinhamento com o que eu precisava. Recomendo sem hesitar.
+      <span>Juliana Silva</span>
+    </blockquote>
+    <blockquote>
+      Os profissionais da Trampay mostraram alto nível de conhecimento técnico e compromisso. Além de entenderem bem a proposta, trouxeram soluções criativas que elevaram o resultado final. Excelente experiência!
+      <span>Guilherme Sousa</span>
+    </blockquote>
+  </div>
+</div>
+
+  <main>
+       
+
+        
+
+    
+   
+  </main>
+   
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-title">Institucional</h3>
+        <ul class="footer-links">
+          <li><a href="sobre.html#quem-somos">Quem somos</a></li>
+          <li><a href="sobre.html#como-funciona">Como funciona</a></li>
+          <li><a href="#">Seja um parceiro</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3 class="footer-title">Ajuda</h3>
+        <ul class="footer-links">
+          <li><a href="#">Perguntas frequentes</a></li>
+          <li><a href="#">Políticas de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Fale conosco</a></li>
+        </ul>
+      </div>
+<div class="footer-section">
+  <h3 class="footer-title">Redes sociais</h3>
+  <div class="social-links">
+    <a class="social-btn ig" href="https://instagram.com/" target="_blank" aria-label="Instagram">
+      <i class="bi bi-instagram"></i>
+    </a>
+    <a class="social-btn yt" href="https://youtube.com/" target="_blank" aria-label="YouTube">
+      <i class="bi bi-youtube"></i>
+    </a>
+  </div>
+</div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Newsletter</h3>
+        <p>Inscreva-se para receber nossas novidades</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu e-mail" required>
+          <button type="submit">Inscrever</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Trampay. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('.header-top');
+  if(window.scrollY > 10) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+/* ====== Anti-duplicação: remove modais antigos injetados ====== */
+document.querySelectorAll('.logincontainer, .modal-perfil').forEach((el, idx) => {
+  if (idx > 1) el.remove(); // mantém apenas o primeiro de cada tipo
+});
+
+/* Garante o botão de perfil sem duplicar */
+let btnPerfil = document.getElementById('btnPerfil');
+if (!btnPerfil) {
+  const icons = document.querySelector('.icons') || document.body;
+  const a = document.createElement('a'); a.id='btnPerfil'; a.href='#'; a.title='Perfil'; a.innerHTML='<i class="bi bi-person"></i>';
+  icons.appendChild(a);
+  btnPerfil = a;
+}
+
+/* ====== Lógica (mesma do sobre.html) ====== */
+async function verificarLoginStatus() {
+  try{
+    const r = await fetch('auth.php?action=status');
+    const data = await r.json();
+    if (data.logged_in) {
+      btnPerfil.innerHTML = '<i class="bi bi-person-check"></i>';
+      preencherPerfilUI(data.user);
+      return data.user;
+    } else {
+      btnPerfil.innerHTML = '<i class="bi bi-person"></i>';
+      return null;
+    }
+  }catch(e){ console.error(e); return null; }
+}
+
+function mostrarLogin(){ document.getElementById('loginContainer').classList.add('abrir'); }
+function fecharLogin(){ document.getElementById('loginContainer').classList.remove('abrir'); }
+
+async function fazerLogin(e){
+  if(e) e.preventDefault();
+  const fd = new FormData(document.getElementById('loginForm'));
+  fd.append('action','login');
+  try{
+    const r = await fetch('auth.php', { method:'POST', body:fd });
+    const data = await r.json();
+    if(data.success){
+      alert('Login realizado!');
+      fecharLogin();
+      preencherPerfilUI(data.user);
+      await verificarLoginStatus();
+      mostrarPerfil();
+    }else{
+      alert('Erro: ' + (data.error || 'Falha no login'));
+    }
+  }catch{ alert('Erro ao conectar com o servidor'); }
+}
+
+async function fazerLogout(){
+  try{
+    const r = await fetch('auth.php?action=logout');
+    const data = await r.json();
+    if(!data.logged_in){
+      alert('Logout realizado!');
+      fecharPerfil();
+      await verificarLoginStatus();
+    }
+  }catch{ alert('Erro ao fazer logout'); }
+}
+
+function mostrarPerfil(){
+  const modal = document.getElementById('modalPerfil');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  setActiveTab('visao');
+}
+function fecharPerfil(){ const m=document.getElementById('modalPerfil'); if(m) m.style.display = 'none'; }
+
+function setActiveTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  const btn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+  const pane = document.getElementById(`tab-${tab}`);
+  if (btn) btn.classList.add('active'); if (pane) pane.classList.add('active');
+}
+
+function handleFromName(nome){
+  if(!nome) return 'perfil';
+  const semAcento = nome.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const base = semAcento.toLowerCase().replace(/[^a-z0-9]+/g,'');
+  return base || 'perfil';
+}
+function preencherPerfilUI(user){
+  if(!user) return;
+  const $=id=>document.getElementById(id);
+  const nome=user.nome||'', email=user.email||'', tipo=user.tipo||'Cliente';
+  if($('perfilNome')) $('perfilNome').textContent=nome;
+  if($('perfilEmail')) $('perfilEmail').textContent=email;
+  if($('perfilTipo')) $('perfilTipo').textContent=tipo;
+  const handle='@'+handleFromName(nome); if($('perfilHandle')) $('perfilHandle').textContent=handle;
+  if($('editNome')) $('editNome').value=nome;
+  if($('editEmail')) $('editEmail').value=email;
+  if(user.avatar_url && $('perfilAvatar')) $('perfilAvatar').src=user.avatar_url;
+}
+
+async function enviarFotoPerfil(file){
+  const fd = new FormData();
+  fd.append('action','update_profile'); fd.append('foto', file);
+  const resp = await fetch('auth.php', { method:'POST', body:fd });
+  const data = await resp.json();
+  if(!data.success) throw new Error(data.error || 'Falha ao atualizar foto');
+  return data.user;
+}
+async function salvarEdicoesPerfil(e){
+  e.preventDefault();
+  const nome=(document.getElementById('editNome')?.value||'').trim();
+  const email=(document.getElementById('editEmail')?.value||'').trim();
+  const senha_atual=document.getElementById('senhaAtual')?.value||'';
+  const nova_senha=document.getElementById('novaSenha')?.value||'';
+  const confirma=document.getElementById('confirmaSenha')?.value||'';
+  if(nova_senha || confirma){
+    if(nova_senha.length<8){ alert('A nova senha deve ter no mínimo 8 caracteres.'); return; }
+    if(nova_senha!==confirma){ alert('A confirmação da nova senha não confere.'); return; }
+    if(!senha_atual){ alert('Informe a senha atual para trocar e-mail/senha.'); return; }
+  }
+  const fd=new FormData();
+  fd.append('action','update_profile');
+  if(nome) fd.append('nome',nome);
+  if(email) fd.append('email',email);
+  if(senha_atual) fd.append('senha_atual',senha_atual);
+  if(nova_senha) fd.append('nova_senha',nova_senha);
+  try{
+    const r=await fetch('auth.php',{method:'POST',body:fd});
+    const data=await r.json();
+    if(!data.success){ alert('Erro: ' + (data.error || 'Falha ao atualizar perfil')); return; }
+    preencherPerfilUI(data.user);
+    ['senhaAtual','novaSenha','confirmaSenha'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+    setActiveTab('visao'); alert('Perfil atualizado com sucesso!');
+  }catch{ alert('Erro ao conectar com o servidor.'); }
+}
+
+/* Listeners */
+document.addEventListener('DOMContentLoaded', async ()=>{
+  await verificarLoginStatus();
+
+  btnPerfil.addEventListener('click', async (e)=>{
+    e.preventDefault();
+    const u = await verificarLoginStatus();
+    if (u) mostrarPerfil(); else mostrarLogin();
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', fazerLogin);
+  document.getElementById('btnSair').addEventListener('click', fazerLogout);
+  document.getElementById('fecharPerfil').addEventListener('click', fecharPerfil);
+
+  const inputFoto=document.getElementById('inputFoto');
+  const avatarEl=document.getElementById('perfilAvatar');
+  if(inputFoto){
+    inputFoto.addEventListener('change', async (e)=>{
+      const file=e.target.files?.[0]; if(!file) return;
+      const reader=new FileReader();
+      reader.onload=()=>{ if(avatarEl) avatarEl.src=reader.result; }
+      reader.readAsDataURL(file);
+      try{ const u=await enviarFotoPerfil(file); preencherPerfilUI(u); alert('Foto atualizada!'); }
+      catch(err){ alert(err.message); }
+    });
+  }
+
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    const t=btn.dataset.tab; if(!t) return;
+    btn.addEventListener('click', ()=> setActiveTab(t));
+  });
+  const btnCancelar=document.getElementById('btnCancelarEdicao');
+  if(btnCancelar) btnCancelar.addEventListener('click', ()=> setActiveTab('visao'));
+
+  // Fechar com ESC
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') fecharPerfil(); });
+});
+
+(async ()=>{
+  try{
+    const r = await fetch('auth.php?action=status', { credentials:'include' });
+    const data = await r.json();
+    if(data?.logged_in && data.user?.foto_perfil){
+      document.querySelectorAll('[data-avatar-src]').forEach(el=>{
+        el.src = data.user.foto_perfil + '?t=' + Date.now();
+      });
+    }
+  }catch(e){}
+})();
+
+
+</script>
+</body>
+</html>

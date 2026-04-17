@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços Intermediários - Trampay</title>
+    <style>
+        :root {
+            --primary: #02001b;
+            --accent: #ffd700;
+            --light: #f4f4f4;
+            --gradient: linear-gradient(90deg, #000a25fd, #000c2ccc);
+        }
+        
+        @import url('https://fonts.cdnfonts.com/css/satoshi');
+        
+        ::-webkit-scrollbar { width: 7px; }
+        ::-webkit-scrollbar-track { background-color: rgb(221, 220, 230); }
+        ::-webkit-scrollbar-thumb { background-color: #02001b; border-radius: 50px; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #fdfdfd;
+            color: #02001b;
+            font-family: 'Satoshi', sans-serif;
+            padding-top: 90px;
+        }
+
+        /* Header Styles */
+        .header-top {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 14px 24px;
+            height: 86px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            background: transparent;
+            transition: background-color 0.4s;
+        }
+
+        .header-top.scrolled {
+            background-color: #02001b !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .navbar { justify-self: start; }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            font-size: 20px;
+            font-family: 'Bebas Neue';
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;
+            background: #00185c22;
+            border-radius: 6px;
+            padding: 5px 10px;
+        }
+
+        .logo {
+            justify-self: center;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .header-right {
+            justify-self: end;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right a#btnPerfil {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.25);
+            transition: all 0.15s ease;
+        }
+
+        .header-right a#btnPerfil i {
+            font-size: 22px;
+            color: #fff !important;
+        }
+
+        .header-right a#btnPerfil:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0,0,0,.25);
+            background: rgba(255,255,255,.08);
+        }
+
+        /* Hero Section */
+        .service-hero {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('aboutbg.png') center/cover no-repeat;
+            opacity: 0.15;
+        }
+
+        .service-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .service-hero h1 {
+            font-family: 'Bebas Neue';
+            font-size: 5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #f4f4f4, #a3ddff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #dbe6ff;
+        }
+
+        .service-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Service List */
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue';
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-card-header {
+            background: var(--gradient);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .service-card-header h3 {
+            font-family: 'Bebas Neue';
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .service-card-body {
+            padding: 25px;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features li i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .service-price {
+            font-family: 'Bebas Neue';
+            font-size: 2rem;
+            color: var(--primary);
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .service-cta {
+            display: block;
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .service-cta:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* How it Works */
+        .how-it-works {
+            background: #f8f9ff;
+            padding: 80px 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue';
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h4 {
+            font-family: 'Bebas Neue';
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .accordion-button {
+            font-family: 'Bebas Neue';
+            font-size: 1.3rem;
+            padding: 20px;
+            background: #f8f9ff;
+            border: none;
+            box-shadow: none;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .accordion-body {
+            padding: 20px;
+            background: #f8f9ff;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('aboutbg.png') center/cover no-repeat;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+            padding: 40px 20px;
+            color: #f4f4f4;
+            font-family: Satoshi;
+            font-size: 1.0rem;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .footer-section {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-family: 'Bebas Neue';
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--gradient);
+            color: #fff;
+            font-size: 22px;
+            border: 1px solid rgba(255,255,255,.18);
+            box-shadow: 0 6px 16px rgba(0,0,0,.22);
+            transition: transform 0.18s ease, filter 0.18s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 70%;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background-color: #000c2c;
+            color: #f1f5ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 15px;
+            font-family: 'Bebas Neue';
+        }
+
+        .newsletter-form button:hover {
+            background-color: #d8b800;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-top {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                height: auto;
+                padding: 10px;
+            }
+            
+            .navbar {
+                justify-self: center;
+                margin: 10px 0;
+            }
+            
+            .nav-menu {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .service-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header-top">
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a href="homepage.html">INÍCIO</a></li>
+                <li><a href="profissionais.php">SERVIÇOS</a></li>
+                <li><a href="sobre.html">SOBRE NÓS</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <img src="logo.png" alt="Trampay">
+        </div>
+        <div class="header-right">
+            <a id="btnPerfil" href="#" title="Perfil"><i class="bi bi-person"></i></a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-hero-content">
+                <span class="service-badge">SERVIÇOS INTERMEDIÁRIOS</span>
+                <h1>Serviços de Média Duração</h1>
+                <p>Demandas de média duração, que exigem maior dedicação. Equilibram tempo e valor, garantindo resultados consistentes e de qualidade.</p>
+                <a href="#services" class="service-cta">VER SERVIÇOS DISPONÍVEIS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services List -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços Intermediários</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <h3>Pintura de Ambientes</h3>
+                        </div>
+                        <div class="service-card-body">
+                            <p>Serviço completo de pintura de paredes e tetos com preparação adequada e materiais de qualidade.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle"></i> Até 30m² por serviço</li>
+                                <li><i class="bi bi-check-circle"></i> Preparação de superfícies</li>
+                                <li><i class="bi bi-check-circle"></i> Tinta não inclusa (orçamento separado)</li>
+                                <li><i class="bi bi-check-circle"></i> Limpeza final completa</li>
+                            </ul>
+                            <div class="service-price">A partir de R$ 350</div>
+                            <a href="#" class="service-cta">SOLICITAR ORÇAMENTO</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <h3>Instalação Elétrica</h3>
+                        </div>
+                        <div class="service-card-body">
+                            <p>Instalação e manutenção elétrica residencial com segurança e conformidade com as normas.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle"></i> Instalação de até 5 pontos</li>
+                                <li><i class="bi bi-check-circle"></i> Troca de disjuntores e tomadas</li>
+                                <li><i class="bi bi-check-circle"></i> Materiais não inclusos</li>
+                                <li><i class="bi bi-check-circle"></i> Laudo técnico opcional</li>
+                            </ul>
+                            <div class="service-price">A partir de R$ 280</div>
+                            <a href="#" class="service-cta">SOLICITAR ORÇAMENTO</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <h3>Reformas de Pequeno Porte</h3>
+                        </div>
+                        <div class="service-card-body">
+                            <p>Reformas parciais em banheiros ou cozinhas com troca de revestimentos e acessórios.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle"></i> Até 10m² de área</li>
+                                <li><i class="bi bi-check-circle"></i> Troca de azulejos e pastilhas</li>
+                                <li><i class="bi bi-check-circle"></i> Instalação de acessórios</li>
+                                <li><i class="bi bi-check-circle"></i> Materiais não inclusos</li>
+                            </ul>
+                            <div class="service-price">A partir de R$ 850</div>
+                            <a href="#" class="service-cta">SOLICITAR ORÇAMENTO</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <h3>Montagem de Móveis Sob Medida</h3>
+                        </div>
+                        <div class="service-card-body">
+                            <p>Montagem especializada de móveis planejados e sob medida com ajustes personalizados.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle"></i> Até 3 peças por serviço</li>
+                                <li><i class="bi bi-check-circle"></i> Ajustes e nivelamento preciso</li>
+                                <li><i class="bi bi-check-circle"></i> Instalação de puxadores e acessórios</li>
+                                <li><i class="bi bi-check-circle"></i> Limpeza e organização final</li>
+                            </ul>
+                            <div class="service-price">A partir de R$ 450</div>
+                            <a href="#" class="service-cta">SOLICITAR ORÇAMENTO</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <h3>Instalação de Piso Laminado</h3>
+                        </div>
+                        <div class="service-card-body">
+                            <p>Instalação profissional de pisos laminados e vinílicos com acabamento perfeito.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle"></i> Até 25m² de área</li>
+                                <li><i class="bi bi-check-circle"></i> Preparação do subpiso</li>
+                                <li><i class="bi bi-check-circle"></i> Instalação com técnica adequada</li>
+                                <li><i class="bi bi-check-circle"></i> Acabamento com rodapés</li>
+                            </ul>
+                            <div class="service-price">A partir de R$ 600</div>
+                            <a href="#" class="service-cta">SOLICITAR ORÇAMENTO</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <h3>Jardim e Paisagismo</h3>
+                        </div>
+                        <div class="service-card-body">
+                            <p>Criação e manutenção de jardins com projeto paisagístico básico e implantação.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle"></i> Projeto básico de paisagismo</li>
+                                <li><i class="bi bi-check-circle"></i> Preparação do solo e plantio</li>
+                                <li><i class="bi bi-check-circle"></i> Instalação de irrigação simples</li>
+                                <li><i class="bi bi-check-circle"></i> Plantas não inclusas</li>
+                            </ul>
+                            <div class="service-price">A partir de R$ 550</div>
+                            <a href="#" class="service-cta">SOLICITAR ORÇAMENTO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Solicite um Orçamento</h4>
+                        <p>Descreva seu projeto e receba um orçamento detalhado sem compromisso.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Agende a Visita Técnica</h4>
+                        <p>Nossos profissionais farão uma visita para avaliar o local e planejar o serviço.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Execução do Serviço</h4>
+                        <p>Realizamos o serviço com qualidade, dentro do prazo combinado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Como funciona o orçamento para serviços intermediários?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            O orçamento é gratuito e personalizado conforme as necessidades do seu projeto. Após a solicitação, um profissional especializado fará uma visita técnica para avaliar o local e elaborar uma proposta detalhada.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Quem fornece os materiais?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Você pode optar por adquirir os materiais ou solicitar que nossa equipe faça a compra. Oferecemos orientação sobre quantidades e especificações técnicas necessárias.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Qual o prazo médio para execução?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Serviços intermediários geralmente levam de 1 a 3 dias para conclusão, dependendo da complexidade. O prazo exato será informado no orçamento.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Há garantia para os serviços?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Sim, todos os serviços intermediários têm garantia de 90 dias para mão de obra. Defeitos de execução serão reparados sem custo adicional neste período.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3 class="footer-title">Institucional</h3>
+                <ul class="footer-links">
+                    <li><a href="sobre.html#quem-somos">Quem somos</a></li>
+                    <li><a href="sobre.html#como-funciona">Como funciona</a></li>
+                    <li><a href="#">Seja um parceiro</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Ajuda</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Perguntas frequentes</a></li>
+                    <li><a href="#">Políticas de privacidade</a></li>
+                    <li><a href="#">Termos de uso</a></li>
+                    <li><a href="#">Fale conosco</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Redes sociais</h3>
+                <div class="social-links">
+                    <a class="social-btn ig" href="https://instagram.com/" target="_blank" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a class="social-btn yt" href="https://youtube.com/" target="_blank" aria-label="YouTube">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Newsletter</h3>
+                <p>Inscreva-se para receber nossas novidades</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu e-mail" required>
+                    <button type="submit">Inscrever</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Trampay. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Scroll header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header-top');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Lógica dos modais (igual à homepage)
+        async function verificarLoginStatus() {
+            try{
+                const r = await fetch('auth.php?action=status');
+                const data = await r.json();
+                const btn = document.getElementById('btnPerfil');
+                if (data.logged_in) {
+                    btn.innerHTML = '<i class="bi bi-person-check"></i>';
+                    preencherPerfilUI(data.user);
+                    return data.user;
+                } else {
+                    btn.innerHTML = '<i class="bi bi-person"></i>';
+                    return null;
+                }
+            }catch(e){ console.error(e); return null; }
+        }
+
+        function mostrarLogin(){ document.getElementById('loginContainer').classList.add('abrir'); }
+        function fecharLogin(){ document.getElementById('loginContainer').classList.remove('abrir'); }
+
+        async function fazerLogin(e){
+            if(e) e.preventDefault();
+            const fd = new FormData(document.getElementById('loginForm'));
+            fd.append('action','login');
+            try{
+                const r = await fetch('auth.php', { method:'POST', body:fd });
+                const data = await r.json();
+                if(data.success){
+                    alert('Login realizado!');
+                    fecharLogin();
+                    preencherPerfilUI(data.user);
+                    await verificarLoginStatus();
+                    mostrarPerfil();
+                }else{
+                    alert('Erro: ' + data.error);
+                }
+            }catch{ alert('Erro ao conectar com o servidor'); }
+        }
+
+        async function fazerLogout(){
+            try{
+                const r = await fetch('auth.php?action=logout');
+                const data = await r.json();
+                if(!data.logged_in){
+                    alert('Logout realizado!');
+                    fecharPerfil();
+                    await verificarLoginStatus();
+                }
+            }catch{ alert('Erro ao fazer logout'); }
+        }
+
+        function mostrarPerfil(){
+            const modal = document.getElementById('modalPerfil');
+            if (!modal) return;
+            modal.style.display = 'flex';
+            setActiveTab('visao');
+        }
+        function fecharPerfil(){ document.getElementById('modalPerfil').style.display = 'none'; }
+
+        function setActiveTab(tab){
+            document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+            document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        function preencherPerfilUI(user){
+            if(!user) return;
+            document.getElementById('perfilNome').textContent = user.nome || 'Usuário';
+            document.getElementById('perfilEmail').textContent = user.email || 'usuario@exemplo.com';
+            document.getElementById('perfilTipo').textContent = user.tipo || 'Cliente';
+            document.getElementById('editNome').value = user.nome || '';
+            document.getElementById('editEmail').value = user.email || '';
+        }
+
+        async function salvarPerfil(e){
+            if(e) e.preventDefault();
+            const fd = new FormData(document.getElementById('formEditarPerfil'));
+            fd.append('action','editar_perfil');
+            try{
+                const r = await fetch('auth.php', { method:'POST', body:fd });
+                const data = await r.json();
+                if(data.success){
+                    alert('Perfil atualizado!');
+                    preencherPerfilUI(data.user);
+                    setActiveTab('visao');
+                }else{
+                    alert('Erro: ' + data.error);
+                }
+            }catch{ alert('Erro ao conectar com o servidor'); }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', async function() {
+            await verificarLoginStatus();
+            
+            document.getElementById('btnPerfil').addEventListener('click', function(e) {
+                e.preventDefault();
+                verificarLoginStatus().then(user => {
+                    if (user) mostrarPerfil();
+                    else mostrarLogin();
+                });
+            });
+            
+            document.getElementById('loginForm').addEventListener('submit', fazerLogin);
+            document.getElementById('btnSair').addEventListener('click', fazerLogout);
+            document.getElementById('fecharPerfil').addEventListener('click', fecharPerfil);
+            document.getElementById('btnCancelarEdicao').addEventListener('click', () => setActiveTab('visao'));
+            document.getElementById('formEditarPerfil').addEventListener('submit', salvarPerfil);
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if(this.id === 'btnSair') return;
+                    setActiveTab(this.dataset.tab);
+                });
+            });
+            
+            // Fechar modais ao clicar fora
+            window.addEventListener('click', function(e) {
+                if(e.target === document.getElementById('loginContainer')) fecharLogin();
+                if(e.target === document.getElementById('modalPerfil')) fecharPerfil();
+            });
+        });
+    </script>
+</body>
+</html> 

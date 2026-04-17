@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trampay • Perfil do Profissional</title>
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Fonts usadas na homepage -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:opsz,wght@14..32,100..900&family=Oswald:wght@200..700&family=Poppins:wght@100;300;400;500;600;700;800;900&family=Zain:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+
+  <!-- jQuery + Bundle Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ===== Reset / Base ===== */
+    html{ scroll-behavior:smooth; overflow-x:hidden; }
+    html,body{ margin:0; padding:0; }
+    body{ color:#02001b; background:#fdfdfd; font-family:"Satoshi", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+
+    /* ===== Header fixo igual homepage ===== */
+    header{ width:100%; color:#000; }
+    .header-top{ background-color:#02001b; position:fixed; top:0; left:0; width:100%; height:100px; padding-top:35px; display:flex; justify-content:space-around; align-items:center; z-index:10; transition: background-color .4s, box-shadow .4s; }
+    .header-top.scrolled{ background-color:#02001b; box-shadow:0 2px 12px rgba(0,0,0,.08); }
+    .navbar{ display:flex; justify-content:center; color:#fff; z-index:100000; }
+    .nav-menu{ list-style:none; display:flex; gap:40px; margin-top:-20px; }
+    .nav-menu a{ font-size:20px; font-family:"Bebas Neue"; color:#fff; text-decoration:none; }
+    .nav-menu a:hover{ color:#ffd700; background:#00185c22; border-radius:6px; transition:color .2s, background .2s; }
+    .logo{ font-family:"Bacasime Antique", serif; font-size:55px; position:absolute; left:50%; transform:translateX(-50%); margin-top:-50px; }
+    .logo img{ width:250px; height:auto; }
+    .icons-search{ display:flex; align-items:center; margin-left:auto; z-index:7; font-size:20px; padding-right:20px; margin-top:-10px; }
+    .icons{ display:flex; align-items:center; gap:15px; color:#fff; margin-top:-20px; }
+    .icons i{ font-size:25px; cursor:pointer; }
+
+    /* ===== Hero Perfil (claro, seguindo estética da homepage) ===== */
+    .hero{ padding-top:120px; /* compensa header fixo */ }
+    .hero-wrap{ background:#000a25fd; color:#fff; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,.18); padding:22px; }
+    .avatar{ width:110px; height:110px; border-radius:999px; object-fit:cover; border:3px solid rgba(255,255,255,.9); box-shadow:0 10px 24px rgba(0,0,0,.35); background:#14223f; }
+    .chip{ display:inline-flex; align-items:center; gap:.4rem; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.24); padding:.35rem .6rem; border-radius:999px; font-size:.9rem; }
+
+    /* ===== Cards/Seções ===== */
+    .section{ background:#ffffff; border:1px solid #e0e0e0; border-radius:12px; padding:16px; box-shadow:0 4px 8px rgba(0,0,0,.06); }
+    .section-title{ display:flex; align-items:center; gap:8px; font-family:"Bebas Neue"; letter-spacing:.6px; color:#00185c; font-size:1.4rem; margin-bottom:.25rem; }
+    .muted{ color:#555; }
+    .service-tag{ display:inline-block; background:#f6f8ff; border:1px solid #e8eaf7; border-radius:8px; padding:.35rem .55rem; font-weight:600; color:#00185c; }
+    .btn-dark-lite{ background:#00124410; border:1px solid #00124430; color:#00185c; }
+    .btn-dark-lite:hover{ background:#00124418; }
+
+    .form-control, .form-select{ background:#fff; border-color:#dfe3f0; color:#111; }
+    .form-control:focus, .form-select:focus{ background:#fff; border-color:#00195f; box-shadow:0 0 0 .2rem rgba(0,25,95,.08); }
+    .btn-outline-primary{ border-color:#6b73ff; color:#1d2a6f; }
+    .btn-outline-primary:hover{ background:#6b73ff; color:#fff; }
+    .btn-primary{ background:linear-gradient(90deg, #000a25fd, #000c2ccc); border:none; }
+    .btn-primary:hover{ filter:brightness(1.1); }
+
+    .divider{ height:1px; background:#e8eaf7; margin:14px 0; }
+
+    /* ===== Modal de Edição (visual homepage) ===== */
+    .modal-content.tp{ background:#fff; color:#001; border:1px solid #e8eaf7; border-radius:18px; box-shadow:0 20px 60px rgba(0,0,0,.20); }
+    .modal-header.tp{ background:linear-gradient(90deg, #000a25fd, #000c2ccc); color:#fff; }
+
+    /* ===== Grid de cards públicos ===== */
+    .card-tile{ background:#ffffff; border:1px solid #e0e0e0; border-radius:12px; padding:12px; height:100%; }
+
+    /* ===== Rodapé rápido (opcional) ===== */
+    .footer{ background:linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url('aboutbg.png') center/cover no-repeat; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,.18); padding:40px 20px; color:#f4f4f4; font-family:Satoshi; font-size:1rem; margin-top:24px; }
+
+    /* Responsivo */
+    @media (max-width: 768px){
+      .header-top{ height:86px; padding-top:28px; }
+      .logo img{ width:200px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ====== HEADER (mesma estrutura da homepage) ====== -->
+  <header>
+    <div class="header-top" id="headerTop">
+      <nav class="navbar">
+        <ul class="nav-menu">
+          <li><a href="sobre.html">SOBRE NÓS</a></li>
+          <li><a href="profissionais.php">SERVIÇOS</a></li>
+        </ul>
+      </nav>
+      <div class="logo">
+        <a href="homepage.html" aria-label="Trampay - Início"><img src="logo.png" alt="logo"></a>
+      </div>
+      <div class="icons-search">
+        <div class="icons">
+          <a class="icons" id="btnPerfil" href="#" title="Abrir perfil ou login"><i class="bi bi-person"></i></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Login da homepage (mesmo HTML/CSS para manter padrão visual) ===== -->
+  <div class="logincontainer" id="loginContainer" style="display:none">
+    <h2>Login</h2>
+    <form id="loginForm" method="POST">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <a href="esqueci_senha_cliente.html" class="forgot-password">Esqueci minha senha</a>
+    <p style="color:#d3d3d3; margin-top:12px; font-size:.9rem">Não tem conta? <a href="cadcliente.html" style="color:#fff; text-decoration:none">Cadastre-se</a></p>
+  </div>
+
+  <!-- ===== Modal/Perfil resumido (mesmo padrão) ===== -->
+  <div class="modal-perfil" id="modalPerfil" style="display:none">
+    <div class="perfil-conteudo">
+      <span class="fechar" id="fecharPerfil">&times;</span>
+      <div class="perfil-header">
+        <div class="avatar-wrap">
+          <img id="perfilAvatar" src="avatar.png" alt="Foto do Perfil">
+          <label for="inputFoto" class="trocar-foto-btn"><i class="bi bi-camera"></i><span>Trocar foto</span></label>
+          <input id="inputFoto" type="file" accept="image/*" hidden>
+        </div>
+      </div>
+      <div class="perfil-tabs">
+        <button class="tab-btn active" data-tab="visao">Resumo</button>
+        <button class="tab-btn" data-tab="editar">Editar</button>
+        <button class="tab-btn sair" id="btnSairTopo">Sair</button>
+      </div>
+      <div class="tab-pane active" id="tab-visao">
+        <div class="section-wrap perfil-info">
+          <p><strong>Nome:</strong> <span id="perfilNome">Usuário</span></p>
+          <p><strong>E-mail:</strong> <span id="perfilEmail">usuario@exemplo.com</span></p>
+          <p><strong>Tipo:</strong> <span id="perfilTipo">Profissional</span></p>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab-editar">
+        <form id="formEditarPerfil" enctype="multipart/form-data" class="section-wrap">
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="editNome">Nome</label>
+              <input type="text" id="editNome" name="nome" placeholder="Seu nome completo">
+            </div>
+            <div class="form-group">
+              <label for="editEmail">E-mail</label>
+              <input type="email" id="editEmail" name="email" placeholder="seu@email.com">
+            </div>
+          </div>
+          <div class="divider">Trocar senha (opcional)</div>
+          <div class="grid-3">
+            <div class="form-group"><label for="senhaAtual">Senha atual</label><input type="password" id="senhaAtual" name="senha_atual" placeholder="••••••••"></div>
+            <div class="form-group"><label for="novaSenha">Nova senha</label><input type="password" id="novaSenha" name="nova_senha" placeholder="••••••••"></div>
+            <div class="form-group"><label for="confirmaSenha">Confirmar nova senha</label><input type="password" id="confirmaSenha" name="confirma_nova_senha" placeholder="••••••••"></div>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn ghost" id="btnCancelarEdicao">Cancelar</button>
+            <button type="submit" class="btn primary" id="btnSalvarPerfil"><i class="bi bi-check2-circle"></i> Salvar alterações</button>
+          </div>
+          <small class="hint">Para alterar e-mail e/ou senha, preencha a <b>Senha atual</b> por segurança.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO PERFIL ===== -->
+  <main class="container hero">
+    <div class="hero-wrap">
+      <div class="d-flex gap-3 align-items-center">
+        <img id="heroAvatar" class="avatar" src="assets/placeholder-avatar.png" alt="avatar" />
+        <div>
+          <h2 id="heroNome" class="mb-1" style="font-family:'Bebas Neue'; letter-spacing:1px; font-size:2.2rem;">Profissional</h2>
+          <div class="small" id="heroHandle" style="opacity:.9">@usuario</div>
+          <div class="d-flex gap-2 mt-2 flex-wrap">
+            <span class="chip"><i class="bi bi-geo-alt"></i><span id="heroCidade">Cidade</span></span>
+            <span class="chip"><i class="bi bi-envelope"></i><span id="heroEmail">email@example.com</span></span>
+            <span class="chip"><i class="bi bi-phone"></i><span id="heroTelefone">—</span></span>
+            <span class="chip"><i class="bi bi-tags"></i><span id="heroCategoria">Categoria</span></span>
+            <a id="heroSiteLink" class="chip" href="#" target="_blank" rel="noopener"><i class="bi bi-globe"></i><span id="heroSite">Site</span></a>
+          </div>
+        </div>
+        <div class="ms-auto text-end">
+          <div class="mb-1"><span class="chip"><i class="bi bi-star-fill"></i> <span id="heroMedia">4.9</span></span> <span class="chip"><span id="heroQtd">0</span> avaliações</span></div>
+          <button class="btn btn-primary btn-sm" id="btnEditarPerfil"><i class="bi bi-pencil-square"></i> Editar perfil</button>
+        </div>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col-lg-8">
+          <div class="section">
+            <div class="section-title"><i class="bi bi-person-lines-fill"></i> Sobre mim</div>
+            <div id="sobreTexto" class="muted" style="white-space:pre-wrap;">Conte um pouco sobre você, sua experiência e diferenciais…</div>
+          </div>
+        </div>
+        <!-- dentro do .row g-3 mt-2, coluna da agenda -->
+<div class="col-lg-4">
+  <div class="section">
+    <div class="section-title"><i class="bi bi-calendar2-week"></i> Agenda</div>
+    <div class="muted small mb-2">Gerencie seus horários e agendamentos.</div>
+    <button id="btnAgenda" class="btn btn-sm btn-dark-lite">
+      <i class="bi bi-calendar-check"></i> Acessar minha agenda
+    </button>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <!-- ===== Seções Públicas ===== -->
+    <div class="row g-4 mt-3">
+      <div class="col-lg-6">
+        <div class="section">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="section-title"><i class="bi bi-tools"></i> Serviços</div>
+            <button class="btn btn-sm btn-dark-lite" id="btnAbrirServicos"><i class="bi bi-pencil"></i> Gerenciar</button>
+          </div>
+          <div id="gridServicosPublic" class="row g-3 mt-1"></div>
+          <div id="servicosVazio" class="muted small">Nenhum serviço cadastrado ainda.</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="section">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="section-title"><i class="bi bi-images"></i> Portfólio</div>
+            <button class="btn btn-sm btn-dark-lite" id="btnAbrirPortfolio"><i class="bi bi-pencil"></i> Gerenciar</button>
+          </div>
+          <div id="gridPortfolioPublic" class="row g-3 mt-1"></div>
+          <div id="portfolioVazio" class="muted small">Você ainda não publicou imagens no portfólio.</div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="section">
+          <div class="section-title"><i class="bi bi-chat-left-quote"></i> Avaliações</div>
+          <div id="listaAvaliacoes" class="d-flex flex-column gap-3">
+            <div class="muted small">As avaliações dos clientes aparecem aqui (somente leitura).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== Modal de Edição Completo (tabs) ===== -->
+  <div class="modal fade" id="perfilModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content tp">
+        <div class="modal-header tp">
+          <h5 class="modal-title"><i class="bi bi-person-gear"></i> Editar perfil</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="tab-dados-btn" data-bs-toggle="pill" data-bs-target="#tab-dados" type="button" role="tab">Dados</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-servicos" type="button" role="tab"><i class="bi bi-tools"></i> Serviços</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-portfolio" type="button" role="tab"><i class="bi bi-images"></i> Portfólio</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-senha" type="button" role="tab"><i class="bi bi-shield-lock"></i> Senha</button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <!-- DADOS -->
+            <div class="tab-pane fade show active" id="tab-dados" role="tabpanel">
+              <form id="formPerfil" class="row g-3">
+                <div class="col-12 d-flex gap-3 align-items-center">
+                  <img id="editAvatarPreview" class="avatar" src="assets/placeholder-avatar.png" alt="avatar" />
+                  <div>
+                    <label for="inputAvatar" class="btn btn-sm btn-dark-lite"><i class="bi bi-upload"></i> Trocar foto</label>
+                    <input id="inputAvatar" type="file" accept="image/*" hidden>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nome</label>
+                  <input class="form-control" id="editNome2" required maxlength="80" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Cidade</label>
+                  <input class="form-control" id="editCidade" maxlength="60" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Telefone</label>
+                  <input class="form-control" id="editTelefone" maxlength="20" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Categoria</label>
+                  <input class="form-control" id="editCategoria" maxlength="60" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Site</label>
+                  <input class="form-control" id="editSite" placeholder="https://" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Sobre mim / Descrição</label>
+                  <textarea class="form-control" id="editBio" rows="4" maxlength="500"></textarea>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                  <button class="btn btn-primary" type="submit"><i class="bi bi-save2"></i> Salvar dados</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- SERVIÇOS (CRUD) -->
+            <div class="tab-pane fade" id="tab-servicos" role="tabpanel">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0" style="font-family:'Bebas Neue'">Meus serviços</h6>
+                <button id="btnNovoServico" class="btn btn-sm btn-dark-lite"><i class="bi bi-plus-lg"></i> Novo serviço</button>
+              </div>
+              <div id="listaServicos" class="row g-3"></div>
+
+              <div class="modal fade" id="modalServico" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                  <form id="formServico" class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Serviço</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="hidden" id="servicoId">
+                      <div class="mb-2">
+                        <label class="form-label">Título</label>
+                        <input type="text" id="servicoTitulo" class="form-control" required maxlength="60">
+                      </div>
+                      <div class="mb-2">
+                        <label class="form-label">Descrição</label>
+                        <textarea id="servicoDescricao" class="form-control" rows="3" required maxlength="300"></textarea>
+                      </div>
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <label class="form-label">Preço (mín.)</label>
+                          <input type="number" id="servicoPreco" class="form-control" min="0" step="0.01">
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Prazo (dias)</label>
+                          <input type="number" id="servicoPrazo" class="form-control" min="0" step="1">
+                        </div>
+                      </div>
+                      <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" id="servicoAtivo" checked>
+                        <label class="form-check-label" for="servicoAtivo">Ativo/visível</label>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- PORTFÓLIO (CRUD) -->
+            <div class="tab-pane fade" id="tab-portfolio" role="tabpanel">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0" style="font-family:'Bebas Neue'">Meus trabalhos</h6>
+                <div>
+                  <label for="portfolioArquivo" class="btn btn-sm btn-dark-lite"><i class="bi bi-upload"></i> Enviar imagem</label>
+                  <input id="portfolioArquivo" type="file" accept="image/*" hidden>
+                </div>
+              </div>
+              <div id="listaPortfolio" class="row g-3"></div>
+            </div>
+
+            <!-- SENHA -->
+            <div class="tab-pane fade" id="tab-senha" role="tabpanel">
+              <form id="formSenha" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Senha atual</label>
+                  <input type="password" id="senhaAtual2" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nova senha</label>
+                  <input type="password" id="senhaNova2" class="form-control" minlength="6" required>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                  <button class="btn btn-primary" type="submit"><i class="bi bi-key"></i> Trocar senha</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container footer mt-4">
+    <div class="text-center">© <span id="ano"></span> Trampay — Todos os direitos reservados</div>
+  </footer>
+
+  <script>
+
+    (async function initProfile() {
+  try {
+    const r = await fetch('auth_profissional.php?action=status', { credentials: 'include' });
+    const data = await r.json();
+    if (data.logged_in) {
+      const u = data.user;
+      // Exemplo de preenchimento:
+      document.querySelectorAll('[data-user-name]').forEach(el => el.textContent = u.nome || 'Profissional');
+      if (u.avatar_url) {
+        const img = document.querySelector('[data-user-avatar]');
+        if (img) img.src = u.avatar_url;
+      }
+      // ...complete com os campos da sua tela
+    } else {
+      // Se preferir: abrir modal de login automaticamente
+      // const modalEl = document.getElementById('loginModal');
+      // bootstrap.Modal.getOrCreateInstance(modalEl).show();
+    }
+  } catch(e) {
+    console.error(e);
+  }
+})();
+
+// Exemplo de login via modal
+async function doLogin(email, senha) {
+  const r = await fetch('auth_profissional.php?action=login', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    credentials: 'include',
+    body: JSON.stringify({ email, senha })
+  });
+  const data = await r.json();
+  if (data.ok) location.reload();
+  else alert(data.message || 'Falha no login.');
+}
+
+async function doLogout(){
+  await fetch('auth_profissional.php?action=logout', { credentials:'include' });
+  location.reload();
+}
+    // ===== Header scroll background =====
+    (function(){
+      const top = document.getElementById('headerTop');
+      function onScroll(){ if(window.scrollY > 10) top.classList.add('scrolled'); else top.classList.remove('scrolled'); }
+      onScroll(); window.addEventListener('scroll', onScroll);
+      document.getElementById('ano').textContent = new Date().getFullYear();
+    })();
+
+    // ===================== HELPERS =====================
+    function $(sel, root=document){ return root.querySelector(sel); }
+    function $all(sel, root=document){ return [...root.querySelectorAll(sel)]; }
+    function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m])); }
+    function handleFromName(nome){ if(!nome) return '@usuario'; const base = nome.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/gi,'').trim().toLowerCase().replace(/\s+/g,'_'); return '@'+(base||'usuario'); }
+
+    // ===================== AUTH / SESSÃO (mantidas) =====================
+    let USER = null; // {id_profissional, nome, email, ...}
+
+    async function authStatus(){
+      try{
+        const r = await fetch('auth_profissional.php?action=status', { credentials:'include' });
+        const data = await r.json();
+        return data?.logged_in ? (data.user || null) : null;
+      }catch(e){ console.error(e); return null; }
+    }
+
+    async function doLogout(){
+      try{ await fetch('auth_profissional.php?action=logout', { credentials:'include' }); }catch(e){}
+      location.href = 'homepage.html';
+    }
+
+    async function ensureLogged(){
+      USER = await authStatus();
+      if(!USER){
+        // Abre login no padrão visual da homepage
+        $('#loginContainer')?.classList?.add('abrir');
+        $('#loginContainer').style.display = 'flex';
+      } else {
+        $('#perfilEmail') && ($('#perfilEmail').textContent = USER.email || '—');
+        $('#perfilNome') && ($('#perfilNome').textContent = USER.nome || '—');
+        $('#perfilTipo') && ($('#perfilTipo').textContent = 'Profissional');
+        preencherHero(USER);
+        carregarServicos();
+        carregarPortfolio();
+        carregarAvaliacoes();
+        carregarBairro();
+      }
+    }
+
+
+
+    // ===================== PREENCHER TELA =====================
+    function preencherHero(u){
+      $('#heroNome').textContent = u.nome || 'Profissional';
+      $('#heroHandle').textContent = handleFromName(u.nome);
+      $('#heroCidade').textContent = u.cidade || '—';
+      $('#heroEmail').textContent = u.email || '—';
+      $('#heroTelefone').textContent = u.telefone || '—';
+      $('#heroCategoria').textContent = u.categoria || '—';
+      $('#heroAvatar').src = u.avatar_url || 'assets/placeholder-avatar.png';
+      const site = (u.site||'').trim();
+      const siteClean = site && !/^https?:\/\//i.test(site) ? 'https://'+site : site;
+      $('#heroSite').textContent = siteClean || 'Site';
+      $('#heroSiteLink').href = siteClean || '#';
+      $('#sobreTexto').textContent = u.bio || 'Conte um pouco sobre você, sua experiência e diferenciais…';
+    }
+
+    function preencherEditorDados(u){
+      $('#editNome2').value = u.nome || '';
+      $('#editCidade').value = u.cidade || '';
+      $('#editTelefone').value = u.telefone || '';
+      $('#editCategoria').value = u.categoria || '';
+      $('#editSite').value = u.site || '';
+      $('#editBio').value = u.bio || '';
+      $('#editAvatarPreview').src = u.avatar_url || 'assets/placeholder-avatar.png';
+    }
+
+    async function refreshPerfilModalFromServer(openAfter=false){
+      USER = await authStatus();
+      if(!USER){ alert('Você não está autenticado. Faça login.'); return; }
+      preencherEditorDados(USER);
+      preencherHero(USER);
+      if(openAfter) bootstrap.Modal.getOrCreateInstance($('#perfilModal')).show();
+    }
+
+    // ===================== FORM PERFIL (mantido) =====================
+// No evento de submit do form de perfil
+$('#formPerfil').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  if(!USER){ alert('Sessão expirada.'); return; }
+  
+  const payload = {
+    nome: $('#editNome2').value.trim(),
+    cidade: $('#editCidade').value.trim(),
+    telefone: $('#editTelefone').value.trim(),
+    categoria: $('#editCategoria').value.trim(),
+    site: $('#editSite').value.trim(),
+    bio: $('#editBio').value.trim()
+  };
+  
+  // Validações básicas
+  if(!payload.nome) {
+    alert('Nome é obrigatório');
+    return;
+  }
+  
+  try{
+    const r = await fetch('profile_update.php', { 
+      method:'POST', 
+      headers:{ 'Content-Type':'application/json' }, 
+      credentials:'include', 
+      body: JSON.stringify(payload) 
+    });
+    const data = await r.json();
+    
+    if(data?.ok){ 
+      USER = { ...USER, ...payload }; 
+      preencherHero(USER); 
+      alert('Perfil atualizado com sucesso!'); 
+    } else { 
+      alert(data?.message || 'Não foi possível atualizar o perfil'); 
+    }
+  }catch(err){ 
+    console.error('Erro ao salvar:', err); 
+    alert('Erro de conexão ao salvar.'); 
+  }
+});
+
+   // Upload de avatar (corrigido)
+$('#inputAvatar').addEventListener('change', async (e)=>{
+  const file = e.target.files?.[0]; 
+  if(!file) return;
+  
+  const fd = new FormData(); 
+  fd.append('avatar', file);
+  
+  try{
+    const r = await fetch('upload_avatar.php', { 
+      method:'POST', 
+      body: fd, 
+      credentials:'include' 
+    });
+    const data = await r.json();
+    
+    if(data?.ok){ 
+      // Atualizar ambas as previews
+      $('#editAvatarPreview').src = data.url + '?t=' + Date.now();
+      $('#heroAvatar').src = data.url + '?t=' + Date.now();
+      // Atualizar no objeto USER
+      USER.avatar_url = data.url;
+      alert('Avatar atualizado com sucesso!');
+    } else { 
+      alert(data?.message || 'Falha ao enviar avatar'); 
+    }
+  }catch(e){ 
+    console.error('Erro no upload:', e); 
+    alert('Erro no upload.'); 
+  }
+});
+    // ===================== SENHA (mantido) =====================
+    $('#formSenha').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const atual = $('#senhaAtual2').value; const nova = $('#senhaNova2').value;
+      if(nova.length < 6){ alert('A nova senha deve ter ao menos 6 caracteres.'); return; }
+      try{
+        const r = await fetch('auth_profissional.php?action=change_password', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ atual, nova }), credentials:'include' });
+        const data = await r.json();
+        if(data?.ok){ alert('Senha alterada!'); $('#senhaAtual2').value=''; $('#senhaNova2').value=''; }
+        else{ alert(data?.message || 'Não foi possível alterar a senha.'); }
+      }catch(e){ console.error(e); alert('Erro ao alterar senha.'); }
+    });
+
+    // ===================== SERVIÇOS (CRUD mantido) =====================
+    const listaServicosEl = document.getElementById('listaServicos');
+
+    function cardServico(s){
+      const preco = (s.preco_min && Number(s.preco_min) > 0) ? `R$ ${Number(s.preco_min).toFixed(2)}` : '—';
+      const prazo = (s.prazo_dias && Number(s.prazo_dias) >= 0) ? `${s.prazo_dias} dia(s)` : '—';
+      const badge = s.ativo ? '<span class="badge text-bg-success">Ativo</span>' : '<span class="badge text-bg-secondary">Oculto</span>';
+      return `
+        <div class="col-md-6">
+          <div class="card-tile h-100">
+            <div class="d-flex justify-content-between">
+              <div class="service-tag"><i class="bi bi-tools"></i> ${escapeHtml(s.titulo || '')}</div>
+              ${badge}
+            </div>
+            <p class="muted mt-2" style="white-space:pre-wrap">${escapeHtml(s.descricao || '')}</p>
+            <div class="d-flex justify-content-between text-muted">
+              <small><i class="bi bi-cash-coin"></i> ${preco}</small>
+              <small><i class="bi bi-stopwatch"></i> ${prazo}</small>
+            </div>
+            <div class="d-flex justify-content-end gap-2 mt-2">
+              <button class="btn btn-sm btn-outline-primary" data-edit="${s.id}"><i class="bi bi-pencil"></i> Editar</button>
+              <button class="btn btn-sm btn-outline-danger"  data-del="${s.id}"><i class="bi bi-trash"></i> Excluir</button>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    async function carregarServicos(){
+      if(!listaServicosEl) return;
+      listaServicosEl.innerHTML = '<div class="text-muted">Carregando...</div>';
+      try{
+        const r = await fetch('api_profissional.php?m=services.list', { credentials:'include' });
+        const data = await r.json();
+        const items = Array.isArray(data?.items) ? data.items : [];
+        if(!items.length){ listaServicosEl.innerHTML = '<div class="text-muted">Você ainda não cadastrou serviços.</div>'; }
+        else { listaServicosEl.innerHTML = items.map(cardServico).join(''); }
+        // bind
+        listaServicosEl.querySelectorAll('[data-edit]')?.forEach(btn=> btn.onclick = ()=>abrirEditarServico(items.find(x=>String(x.id)===btn.dataset.edit)) );
+        listaServicosEl.querySelectorAll('[data-del]')?.forEach(btn=> btn.onclick = ()=>excluirServico(btn.dataset.del) );
+        // Público
+        preencherServicosPublic(items);
+      }catch(e){ console.error(e); listaServicosEl.innerHTML = '<div class="text-danger">Erro ao carregar serviços.</div>'; }
+    }
+
+    function preencherServicosPublic(items){
+      const grid = $('#gridServicosPublic'); const vazio = $('#servicosVazio'); if(!grid) return;
+      if(!items?.length){ grid.innerHTML = ''; vazio.classList.remove('d-none'); return; }
+      vazio.classList.add('d-none');
+      grid.innerHTML = items.slice(0,6).map(s=>`
+        <div class="col-md-6">
+          <div class="card-tile h-100">
+            <div class="service-tag"><i class="bi bi-tools"></i> ${escapeHtml(s.titulo||'')}</div>
+            <div class="muted" style="white-space:pre-wrap">${escapeHtml(s.descricao||'')}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function abrirEditarServico(s=null){
+      $('#servicoId').value = s?.id || '';
+      $('#servicoTitulo').value = s?.titulo || '';
+      $('#servicoDescricao').value = s?.descricao || '';
+      $('#servicoPreco').value = s?.preco_min || '';
+      $('#servicoPrazo').value = s?.prazo_dias || '';
+      $('#servicoAtivo').checked = !!(s?.ativo ?? true);
+      bootstrap.Modal.getOrCreateInstance($('#modalServico')).show();
+    }
+
+    async function excluirServico(id){
+      if(!confirm('Excluir este serviço?')) return;
+      try{
+        const r = await fetch('services_delete.php', { method:'POST', headers:{ 'Content-Type':'application/json' }, credentials:'include', body: JSON.stringify({ id }) });
+        const data = await r.json(); if(data?.ok){ carregarServicos(); } else { alert(data?.message || 'Falha ao excluir.'); }
+      }catch(e){ console.error(e); alert('Erro ao excluir.'); }
+    }
+
+    $('#btnNovoServico').addEventListener('click', ()=> abrirEditarServico(null));
+    $('#formServico').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const payload = {
+        id: $('#servicoId').value || undefined,
+        titulo: $('#servicoTitulo').value.trim(),
+        descricao: $('#servicoDescricao').value.trim(),
+        preco_min: $('#servicoPreco').value,
+        prazo_dias: $('#servicoPrazo').value,
+        ativo: $('#servicoAtivo').checked?1:0,
+      };
+      try{
+        const r = await fetch('services_upsert.php', { method:'POST', headers:{ 'Content-Type':'application/json' }, credentials:'include', body: JSON.stringify(payload) });
+        const data = await r.json(); if(data?.ok){ bootstrap.Modal.getInstance($('#modalServico')).hide(); carregarServicos(); } else { alert(data?.message || 'Não foi possível salvar.'); }
+      }catch(e){ console.error(e); alert('Erro ao salvar.'); }
+    });
+
+    // Botão da Agenda: se não logado, abre login; se logado, vai para a tela da agenda
+document.getElementById('btnAgenda')?.addEventListener('click', ()=>{
+  if(!USER){
+    const box = document.getElementById('loginContainer');
+    if (box){ box.style.display = 'flex'; }
+  } else {
+    const url = `trampayagenda://open?uid=${encodeURIComponent(USER.id_profissional)}&nome=${encodeURIComponent(USER.nome||'')}`;
+    window.location.href = url;
+  }
+});
+
+
+// ===================== PORTFÓLIO (CORRIGIDO) =====================
+async function carregarPortfolio(){
+  const grid = $('#listaPortfolio'); 
+  const pub = $('#gridPortfolioPublic'); 
+  const vazio = $('#portfolioVazio');
+  
+  if(grid) grid.innerHTML = '<div class="text-muted">Carregando portfólio...</div>';
+  
+  try{
+    const r = await fetch('portfolio_list.php', { credentials:'include' });
+    if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
+    
+    const data = await r.json(); 
+    console.log('Dados do portfólio:', data);
+    
+    const items = Array.isArray(data?.items) ? data.items : [];
+    
+    // Renderizar na área de edição
+    if(grid){
+      if(items.length === 0) {
+        grid.innerHTML = '<div class="text-muted col-12">Nenhuma imagem no portfólio.</div>';
+      } else {
+        grid.innerHTML = items.map(p => `
+          <div class="col-md-4 col-6">
+            <div class="card-tile h-100">
+              <img src="${escapeHtml(p.url)}" alt="Portfolio item" 
+                   class="img-fluid rounded" 
+                   style="height: 200px; object-fit: cover; width: 100%;"
+                   onerror="this.src='assets/placeholder-image.png'">
+              <div class="d-flex justify-content-end mt-2">
+                <button class="btn btn-sm btn-outline-danger" data-delp="${p.id}">
+                  <i class="bi bi-trash"></i> Excluir
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+    
+    // Renderizar na área pública
+    if(pub){
+      if(items.length === 0) {
+        pub.innerHTML = '';
+      } else {
+        pub.innerHTML = items.slice(0, 6).map(p => `
+          <div class="col-md-4 col-6">
+            <div class="card-tile h-100">
+              <img src="${escapeHtml(p.url)}" alt="Portfolio item" 
+                   class="img-fluid rounded" 
+                   style="height: 150px; object-fit: cover; width: 100%;"
+                   onerror="this.src='assets/placeholder-image.png'">
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+    
+    // Mostrar/ocultar mensagem de vazio
+    if(vazio){ 
+      vazio.classList.toggle('d-none', items.length > 0); 
+    }
+    
+    // Adicionar eventos aos botões de excluir
+    setTimeout(() => {
+      grid?.querySelectorAll('[data-delp]')?.forEach(btn => {
+        btn.onclick = () => excluirPortfolio(btn.dataset.delp);
+      });
+    }, 100);
+    
+  } catch(e){ 
+    console.error('Erro ao carregar portfólio:', e); 
+    if(grid) {
+      grid.innerHTML = '<div class="text-danger col-12">Erro ao carregar portfólio: ' + e.message + '</div>';
+    }
+  }
+}
+
+// Upload de portfolio corrigido
+$('#portfolioArquivo').addEventListener('change', async (e)=>{
+  const file = e.target.files?.[0]; 
+  if(!file) return;
+  
+  console.log('Arquivo selecionado:', file.name, file.size, file.type);
+  
+  // Mostrar loading
+  const listaPortfolio = $('#listaPortfolio');
+  const originalContent = listaPortfolio.innerHTML;
+  listaPortfolio.innerHTML = '<div class="text-muted col-12">Enviando imagem...</div>';
+  
+  try {
+    const fd = new FormData(); 
+    fd.append('arquivo', file); // Campo correto para o PHP
+    
+    const r = await fetch('portfolio_upload.php', { 
+      method: 'POST', 
+      body: fd, 
+      credentials: 'include' 
+    });
+    
+    const data = await r.json();
+    console.log('Resposta do upload:', data);
+    
+    if(data?.ok){ 
+      alert(data.message || 'Imagem adicionada ao portfólio!');
+      await carregarPortfolio(); // Recarregar a lista
+    } else { 
+      alert(data?.message || 'Falha no upload.'); 
+      listaPortfolio.innerHTML = originalContent; // Restaurar conteúdo original
+    }
+  } catch(e){ 
+    console.error('Erro no upload:', e); 
+    alert('Erro de conexão no upload. Verifique o console para detalhes.'); 
+    listaPortfolio.innerHTML = originalContent; // Restaurar conteúdo original
+  }
+  
+  // Limpar input
+  e.target.value = '';
+});
+
+async function excluirPortfolio(id){
+  if(!confirm('Tem certeza que deseja excluir esta imagem do portfólio?')) return;
+  
+  try{
+    const r = await fetch('portfolio_delete.php', { 
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' }, 
+      credentials: 'include', 
+      body: JSON.stringify({ id }) 
+    });
+    
+    const data = await r.json();
+    
+    if(data?.ok){ 
+      alert('Imagem excluída do portfólio!');
+      await carregarPortfolio(); 
+    } else { 
+      alert(data?.message || 'Falha ao excluir.'); 
+    }
+  } catch(e){ 
+    console.error('Erro ao excluir:', e); 
+    alert('Erro ao excluir imagem.'); 
+  }
+}
+
+    // ===================== AVALIAÇÕES (somente leitura; mantido) =====================
+    async function carregarAvaliacoes(){
+      const list = $('#listaAvaliacoes'); if(!list) return; list.innerHTML = '<div class="text-muted">Carregando...</div>';
+      try{
+        const r = await fetch('reviews_list.php', { credentials:'include' });
+        const data = await r.json(); const items = Array.isArray(data?.items) ? data.items : [];
+        if(!items.length){ list.innerHTML = '<div class="muted small">Sem avaliações ainda.</div>'; $('#heroQtd').textContent = '0'; return; }
+        $('#heroQtd').textContent = String(items.length);
+        const media = (items.reduce((a,b)=>a + (Number(b.nota)||0),0) / items.length) || 0; $('#heroMedia').textContent = media.toFixed(1);
+        list.innerHTML = items.map(av=>`
+          <div class="card-tile">
+            <div class="d-flex justify-content-between">
+              <strong>${escapeHtml(av.cliente || 'Cliente')}</strong>
+              <span class="badge text-bg-warning"><i class="bi bi-star-fill"></i> ${(Number(av.nota)||0).toFixed(1)}</span>
+            </div>
+            <div class="muted" style="white-space:pre-wrap">${escapeHtml(av.comentario||'')}</div>
+            <small class="text-muted">${escapeHtml(av.data||'')}</small>
+          </div>`).join('');
+      }catch(e){ console.error(e); list.innerHTML = '<div class="text-danger">Erro ao carregar avaliações.</div>'; }
+    }
+
+    // ===================== Integração com elementos do header (btnPerfil etc.) =====================
+    $('#btnPerfil')?.addEventListener('click', async (e)=>{ e.preventDefault(); if(!USER){ $('#loginContainer').style.display='flex'; } else { await refreshPerfilModalFromServer(true); } });
+    $('#fecharPerfil')?.addEventListener('click', ()=> $('#modalPerfil').style.display='none');
+    $('#btnCancelarEdicao')?.addEventListener('click', ()=> bootstrap.Modal.getOrCreateInstance($('#perfilModal')).hide());
+    $('#btnSairTopo')?.addEventListener('click', doLogout);
+    $('#btnEditarPerfil')?.addEventListener('click', ()=> refreshPerfilModalFromServer(true));
+
+    // Botões “Gerenciar” abrem diretamente o modal nas abas certas
+    $('#btnAbrirServicos')?.addEventListener('click', async ()=>{ await refreshPerfilModalFromServer(true); const tabBtn = document.querySelector('[data-bs-target="#tab-servicos"]'); tabBtn && new bootstrap.Tab(tabBtn).show(); });
+    $('#btnAbrirPortfolio')?.addEventListener('click', async ()=>{ await refreshPerfilModalFromServer(true); const tabBtn = document.querySelector('[data-bs-target="#tab-portfolio"]'); tabBtn && new bootstrap.Tab(tabBtn).show(); });
+
+    // ===== Login simples (reaproveitando container da homepage) =====
+    $('#loginForm')?.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const email = $('#email').value.trim(); const senha = $('#senha').value.trim();
+      try{
+        const r = await fetch('auth_profissional.php?action=login', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ email, senha }), credentials:'include' });
+        const data = await r.json();
+        if(data?.ok){ $('#loginContainer').style.display='none'; ensureLogged(); }
+        else { alert(data?.message || 'Login inválido'); }
+      }catch(err){ console.error(err); alert('Erro no login.'); }
+    });
+
+    // Ao carregar a página, manter sessão e preencher
+    ensureLogged();
+
+    async function carregarBairro() {
+  try {
+    const r = await fetch('perfil_geo.php', { credentials: 'include' });
+    const data = await r.json();
+    if (data?.ok && data.bairro) {
+      // Mostra bairro ao lado da cidade no chip existente
+      const chipCidade = document.getElementById('heroCidade');
+      if (chipCidade) {
+        const cidadeTxt = chipCidade.textContent && chipCidade.textContent !== '—' ? ' · ' + chipCidade.textContent : '';
+        chipCidade.textContent = `${data.bairro}${cidadeTxt}`;
+      }
+
+      // Monta uma faixa de “Resultados no seu bairro” dentro da página
+      const wrap = document.createElement('div');
+      wrap.className = 'section mt-3';
+      wrap.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="section-title"><i class="bi bi-geo-alt"></i> No seu bairro: ${data.bairro}</div>
+          <a class="btn btn-sm btn-dark-lite" href="profissionais.php?bairro=${encodeURIComponent(data.bairro)}">
+            <i class="bi bi-search"></i> Ver profissionais no seu bairro
+          </a>
+        </div>
+        <div class="muted small">Usamos seu CEP para sugerir resultados próximos automaticamente.</div>
+      `;
+      // Insere logo abaixo do herói
+      const hero = document.querySelector('.hero-wrap');
+      hero?.after(wrap);
+    }
+  } catch(e) {
+    console.error('Geo/Bairro:', e);
+  }
+}
+  </script>
+
+  <!-- ===== CSS herdado (mínimo necessário) copiado da homepage para modais ===== -->
+  <style>
+    /* Estes estilos são os mesmos nomes/classes usados na homepage para os modais de perfil/login */
+    .modal-perfil{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:10001; align-items:center; justify-content:center; }
+    .perfil-conteudo{ width:min(920px,94vw); background:#fff; border-radius:24px; padding:0 0 18px; box-shadow:0 20px 60px rgba(0,0,0,.35); border:1px solid #e8eaf7; font-family:"Satoshi"; position:relative; overflow:hidden; }
+    .perfil-conteudo .fechar{ position:absolute; top:12px; right:14px; font-size:28px; cursor:pointer; color:#fff; z-index:3; text-shadow:0 6px 18px rgba(0,0,0,.45) }
+    .perfil-header{ position:relative; display:grid; grid-template-columns:auto 1fr; column-gap:18px; row-gap:10px; align-items:center; padding:20px 24px 18px; background:linear-gradient(90deg,var(--tp-blue-1),var(--tp-blue-2)); color:#fff; box-shadow:0 8px 30px rgba(0,0,0,.2) inset; }
+    .avatar-wrap{ position:relative; z-index:1 }
+    #perfilAvatar{ width:110px; height:110px; object-fit:cover; border-radius:999px; border:3px solid rgba(255,255,255,.9); box-shadow:0 10px 24px rgba(0,0,0,.35); background:#14223f }
+    .trocar-foto-btn{ position:absolute; right:-6px; bottom:-6px; display:flex; align-items:center; gap:6px; background:#f4f4f4; color:#00133a; border-radius:999px; padding:6px 10px; cursor:pointer; font-family:"Bebas Neue"; letter-spacing:.4px; box-shadow:0 10px 20px rgba(0,0,0,.25) }
+    .perfil-tabs{ display:flex; align-items:center; gap:10px; padding:10px 14px; margin:10px 14px 0; background:#f6f8ff; border-radius:14px; border:1px solid #eef1ff }
+    .tab-btn{ border:none; background:#eef1ff; color:#00185c; padding:10px 16px; border-radius:999px; cursor:pointer; font-family:"Bebas Neue"; letter-spacing:.8px; font-size:1.05rem; box-shadow:0 1px 0 rgba(0,0,0,.04) inset }
+    .tab-btn.active{ background:#00133a; color:#fff }
+    .tab-btn.sair{ margin-left:auto; background:#e74c3c; color:#fff }
+    .tab-pane{ display:none }
+    .tab-pane.active{ display:block }
+    .section-wrap{ padding:14px 22px 8px }
+    .perfil-info p{ margin:.45rem 0; font-size:1.02rem; color:#333 }
+    .perfil-info strong{ color:#0b156e; font-family:"Bebas Neue"; letter-spacing:.6px }
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px }
+    .grid-3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px }
+    @media (max-width:780px){ .grid-2,.grid-3{ grid-template-columns:1fr } }
+    .form-group{ display:flex; flex-direction:column; gap:6px }
+    .form-group label{ font-family:"Zain"; font-size:1rem; color:#00185c }
+    .form-group input{ border:none; border-bottom:2px solid #d3d3d3; padding:10px 6px; outline:none; background:transparent; font-size:1rem; color:#111 }
+    .form-group input:focus{ border-color:#00185c }
+    .btn-row{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px }
+    .btn{ border:none; padding:12px 18px; border-radius:12px; cursor:pointer; font-family:"Zain"; box-shadow:1px 1px 6px #00000022 }
+    .btn.primary{ background:linear-gradient(90deg,var(--tp-blue-1),var(--tp-blue-2)); color:#fff }
+    .btn.ghost{ background:#f3f3f3; color:#00185c }
+
+    .logincontainer{ display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10002; width:min(420px,92vw); padding:28px 26px 24px; border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.06)), linear-gradient(90deg, var(--tp-blue-1), var(--tp-blue-2)); box-shadow:0 24px 64px rgba(0,0,0,.40); border:1px solid rgba(255,255,255,.12); color:#f4f4f4; backdrop-filter:blur(8px) }
+    .logincontainer.abrir{ display:flex; flex-direction:column }
+    .logincontainer h2{ font-family:"Bebas Neue"; font-size:2rem; text-align:center; margin:4px 0 18px; color:#fff; position:relative }
+    .logincontainer h2::after{ content:""; display:block; width:58px; height:3px; margin:8px auto 0; border-radius:999px; background:linear-gradient(90deg,#a3ddff,#ffffff); opacity:.9 }
+    .logincontainer label{ display:block; font-family:"Zain"; font-size:.95rem; color:#d7e3ff; margin:10px 2px 6px }
+    .logincontainer input{ width:100%; padding:12px 10px 10px; border:none; border-bottom:2px solid rgba(255,255,255,.28); border-radius:10px 10px 0 0; background:rgba(255,255,255,.06); color:#fff; font-size:1rem; outline:none }
+    .logincontainer button{ width:100%; padding:14px 16px; margin-top:10px; border:none; border-radius:14px; cursor:pointer; font-size:1.02rem; font-weight:700; font-family:"Zain"; color:#fff; background:linear-gradient(90deg,var(--tp-blue-1),var(--tp-blue-2)); box-shadow:0 10px 24px rgba(0,0,0,.28) }
+    .forgot-password{ margin:12px 0 2px; font-size:.86rem; color:#d7e3ff; text-decoration:none }
+  </style>
+</body>
+</html>

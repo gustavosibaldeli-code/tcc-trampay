@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../Downloads/trampayco"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "tccfinal"
+	}
+}

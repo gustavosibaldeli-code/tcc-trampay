@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilo3.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trampay</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap');
+        @import url('https://fonts.cdnfonts.com/css/satoshi');
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: rgb(221, 220, 230);
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #02001b;
+            border-radius: 50px;
+        }
+
+    html{
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      color: #02001b;
+      background-color: #fdfdfd;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+           header {
+            font-family: "Bacasime Antique", serif;
+            font-size: 10px;
+            font-style: normal;
+            width: 100%;
+            height: 20px;
+            color: rgb(0, 0, 0);
+        }
+
+        .header-top {
+            top: 0;
+    left: 0;
+    width: 100%;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: -0px;
+            position: fixed;
+            z-index: 10;
+            height: 100px;
+            padding-top: 35px;
+            align-items: center;
+            
+        }
+
+        .header-top.scrolled {
+          background-color:#02001b !important; /* or any color you want */
+          transition: background-color 0.4s;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      }
+
+        .logo {
+            font-family: "Bacasime Antique", serif;
+            font-size: 55px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: -50px;
+
+           
+        }
+
+        .icons-search {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            z-index: 7;
+            font-size: 20px;
+            padding-right: 20px;
+            margin-top: -10px;
+        }
+
+
+
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            margin-top: -20px;
+        }
+
+        .icons i {
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+
+
+            color: white;
+
+            z-index: 100000;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin-top: -20px;
+        }
+
+
+        .nav-menu a {
+            font-size: 20px;
+            font-family: Bebas Neue;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;         
+            background: #00185c22; 
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+      }
+
+        @keyframes gradientMove {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+    
+      .services {
+        padding: 100px 50px;
+        text-align: center;
+      }
+
+      .services h2 {
+        font-size: 4.5rem;
+        margin-top: -160px;
+        font-family: Bebas Neue;
+        color: #02001b;
+      }
+
+      .service-cards {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .service {
+        width: 30%;
+        min-width: 250px;
+        text-align: left;
+      }
+
+      .service h3 {
+        margin-bottom: 15px;
+        font-family: Bebas Neue;
+        font-size: 2.25rem;
+       
+      }
+
+      .service p {
+        margin-bottom: 15px;
+        line-height: 1.0;
+        font-size: 1.3rem;
+        font-family: Satoshi;
+        letter-spacing: -0.05rem;
+        font-style: bold;
+        font-weight: 450;
+         color: #333333;
+      }
+
+      .service a {
+        text-decoration: none;
+        color: #02001b;
+        font-weight: bold;
+        FONT-FAMILY: Bebas NEUE;
+        font-size: 1.5REM;
+        letter-spacing: 0.1rem;
+      }
+
+      .service img {
+        width: 100px;
+        margin-left: -25px;
+      }
+
+      /* Professionals Section */
+      .professionals {
+        display: flex;
+        background: #000000;
+        color: #f4f4f4;
+        padding: 80px 50px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        box-shadow:  0 1px 20px 0 rgba(0, 0, 0, 0.226);
+        width: 85%;
+        margin-left: 90px;
+        border-radius: 25px;
+        height: auto;
+        box-shadow: #0000003b 7px 7px 6px;
+      }
+
+      .professionals h2{
+        font-size:5.0rem;
+        font-family: Bebas Neue;
+        font-weight: bold;
+        color: transparent;
+        background: url(glitch.gif);
+        background-size: 200%;
+        background-position: 0 50%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: animate-background 5s infinite alternate linear;
+        margin-top: -100px;
+}
+
+@keyframes animate-background {
+    0% {
+        background-position: 0 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+      
+      .professionals .content {
+        width: 50%;
+        font-family: Satoshi;
+        font-size: 1.2rem;
+        line-height: 2.1rem;
+        color: #f4f4f4be;
+        text-align: left;
+        letter-spacing: -0.09rem;
+        margin-left: -90px;
+      }
+
+      .professionals button {
+        margin-top: 20px;
+        background: #000655b6;
+        color: #f4f4f4;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: ZAIN;
+        font-size: 1.2rem;
+        box-shadow: #0000003b 1px 1px 6px;;
+
+      }
+
+      /* Subscriptions */
+      .subscriptions {
+        padding: 100px 50px;
+        display: flex;
+        justify-content: center;
+        gap: 10px; 
+        flex-wrap: wrap;
+        font-family: Bebas Neue;
+        font-size: 1.5rem;
+      }
+
+      .subscriptions h2{
+        font-size: 4.5rem;
+        font-family: Bebas Neue;
+        color: #02001b;
+        text-align: center;
+        width:100%;
+      }
+
+      .subscriptions p{
+        margin-top: 50px;
+        font-family: Satoshi;
+        font-size: 1.1rem;
+        line-height: 1,1rem;
+        font-style: bold;
+        font-weight: 500;
+        letter-spacing: -0.01rem;
+        text-align: left;
+      }
+
+      .sub {
+        position: relative;
+        border-radius: 10px;
+        width: 18%;
+        min-width: 190px;
+        height: 370px;
+        box-shadow: 1px 1px 6px #0000003b;
+        background: var(--sub-img) center/cover no-repeat;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        transition: 
+          transform 0.40s cubic-bezier(.4,2,.6,1),
+          box-shadow 0.40s cubic-bezier(.4,2,.6,1),
+          z-index 0.40s;
+        z-index: 1;
+      }
+
+      .sub:hover, .sub:focus-within {
+        transform: scale(1.07);
+        box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25), 0 1.5px 8px #0000003b;
+        z-index: 10;
+      }
+      .sub::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        pointer-events: none;
+      
+         background:
+            linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), /* darken the image */
+            radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.18) 100%);
+            z-index: 1;
+            filter: blur(2px);
+      }
+
+      .sub-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        background: linear-gradient(0deg, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.2) 100%, transparent 100%);
+        color: #fff;
+        padding: 30px 15px 20px 15px;
+        box-sizing: border-box;
+        text-align: center;
+        
+      }
+
+      .sub-content h3{
+        margin-top: -300px;
+      }
+
+      .sub h3, .sub p, .sub button {
+        color: #fff;
+        text-shadow: 0 2px 8px #00000080;
+      }
+
+      .sub button {
+        margin-top: 50px;
+        background: #00124486;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: Zain;
+      }
+
+      .sub img {
+        display: none;
+      }
+
+      /*about css*/
+    .about{
+        position:relative;
+        isolation:isolate;
+        min-height:64vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:transparent;
+      }
+      .about::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:-1;
+        background:
+         linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.692)),
+         url('aboutbg.png') center/cover no-repeat; 
+        
+         background-color: #000000;
+        
+         box-shadow:  0 10px 32px 0 rgba(0, 0, 0, 0.418);
+
+      }
+      .about .panel{
+        max-width:840px;
+        width:min(86%,920px);
+        background:#07004225; 
+        padding:54px 38px;
+        border-radius:2px;
+        text-align:center;
+        box-shadow:0 10px 30px rgba(0, 0, 0, 0.507);
+        border-radius:12px;
+        height: fit-content;
+
+      }
+     .about h2 {
+        font-size: clamp(90px, 4.5vw, 64px);
+        margin-bottom: 18px;
+        font-family: Bebas Neue;
+        background: linear-gradient(90deg, #f4f4f4, #a3ddff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+      .about p{
+        line-height:1.25;
+        color:#ffffff;
+        margin:0 auto 26px;
+        max-width:720px;
+        font-family: SATOSHI;
+        font-size: 1.5rem;
+        text-align: center;
+      
+      }
+      .about .btn-blue{
+        background:#f4f4f4;
+        color:#000c2c;
+        border:0;
+        border-radius:999px;
+        padding:16px 34px;
+        font-weight:700;
+        cursor:pointer;
+        font-family: Bebas Neue;
+        font-size: 1.5rem;
+        letter-spacing: 0.1rem;
+      }
+
+
+      /* Featured Profiles */
+      .profiles {
+        padding: 100px 50px;
+        text-align: center;
+        font-family: bebas neue;
+        font-size: 1.5rem;
+
+      }
+
+
+      .profiles h2 {
+        font-size: 4.2rem;
+        color:#02001b;
+      }
+
+      .profiles div {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 40px;
+        margin-bottom: 20px;
+      }
+
+      .profile-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-card img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        margin: 0;
+        border-radius: 100px;
+        box-shadow: 0 7px 8px rgba(0, 0, 0, 0.205);
+      }
+
+      .profile-desc {
+        margin-top: 8px;
+        text-align: center;
+        font-size: 1rem;
+        color: #222;
+        font-family: Satoshi;
+        line-height: 0.9;
+        min-height: 2.4em; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        
+      }
+
+      .profile-desc span {
+        display: block;
+        font-weight: bold;
+        color: #00185c;
+        font-size: 1.05em;
+        text-align: center;
+        margin-top: -60px;
+        align-items: center;
+       
+      }
+
+      .profile-desc small {
+        display: block;
+        color: #555;
+        font-size: 0.90em;
+        text-align: center;
+        margin-top: -30px;
+      }
+
+      .profiles button {
+        display: block;
+        margin: 40px auto 0;
+        background: linear-gradient(90deg, #000a25fd, #000c2c);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: Bebas neue;
+        box-shadow: 1px 1px 6px #030000c2;
+        margin-top: -40px;
+  
+      }
+      .profiles a {
+        text-decoration: none;
+      }
+
+      .profiles a button {
+        text-decoration: none;
+      }
+
+      .spline-container{
+        width: 100vw;
+        height: 120vh;
+        pointer-events: none;
+        margin-top: -50px;
+        
+      }
+
+        .professionals .spline-container{
+          margin-left: -50px;
+          margin-right: 95px;
+        }
+
+              .resultados-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .resultados-container h2 {
+            font-size: 4.5rem;
+            color:#02001b;
+            margin-bottom: 8px;
+            font-family: bebas neue;
+        }
+
+        .resultados-container p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-family: Satoshi;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            padding: 30px 20px;
+            width: 280px;
+            transition: transform 0.2s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card h3 {
+            color: #0b156e;
+            font-size: 4rem;
+            margin: 0 0 10px;
+            font-family: BEBAS NEUE;
+        }
+
+        .card p {
+            font-size: 1.4rem;
+            color: #555;
+            margin: 0;
+            font-family:Satoshi;
+        }
+
+        .footer {
+          background:
+          linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+          url('aboutbg.png') center/cover no-repeat;
+          border-radius: 18px;
+          box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+          padding: 40px 20px;
+          color: #f4f4f4;
+          font-family: Satoshi;
+          font-size: 1.0rem;
+          margin-top:50px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+            
+        }
+
+        .footer-section {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-family: ZAIN;
+            letter-spacing: 0.rem;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #333333;
+        }
+
+        .social-links{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  align-items:center;
+}
+
+/* “botão” azul com ícone branco */
+.social-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px; height:44px;
+  border-radius:12px;
+  background: linear-gradient(90deg,#000a25fd,#000c2ccc); /* seu azul */
+  color:#fff;                         /* ícone branco */
+  font-size:22px;                     /* tamanho do ícone */
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow: 0 6px 16px rgba(0,0,0,.22);
+  transition: transform .18s ease, filter .18s ease;
+  text-decoration:none;
+}
+.social-btn:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+.social-btn:active{ transform: translateY(0); }
+
+/* se quiser levemente diferentes entre si (opcional) */
+.social-btn.ig { border-radius: 999px; }     /* instagram mais redondinho */
+.social-btn.yt { border-radius: 10px; }      /* youtube mais quadrado   */
+
+@media (max-width:520px){
+  .social-btn{ width:40px; height:40px; font-size:20px; }
+}
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 70%;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background-color: #000c2c;
+            color: #f1f5ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 15px;
+            font-family: zain;
+
+        }
+
+        .newsletter-form button:hover {
+            background-color: #d8b800;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+       /* ===== LOGIN (estilo Trampay) ========================================== */
+/* ===== MODAL DE PERFIL ===== */
+.modal-perfil{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:10001; align-items:center; justify-content:center }
+.modal-perfil.abrir{ display:flex }
+.perfil-conteudo{
+  width:min(920px,94vw);
+  max-height:92vh;                    /* limita a altura */
+  background:#fff; border-radius:24px; padding:0;
+  box-shadow:0 20px 60px rgba(0,0,0,.35); border:1px solid #e8eaf7;
+  font-family:"Satoshi",system-ui; position:relative; overflow:hidden;
+  display:flex; flex-direction:column; /* layout interno em coluna */
+}
+.perfil-conteudo .fechar{
+  position:absolute; top:12px; right:14px; font-size:28px; cursor:pointer; color:#fff; z-index:3;
+  text-shadow:0 6px 18px rgba(0,0,0,.45); background:transparent; border:0
+}
+.perfil-header{
+  flex:0 0 auto;
+  display:grid; grid-template-columns:auto 1fr; column-gap:18px; row-gap:10px; align-items:center;
+  padding:20px 24px 18px; background:linear-gradient(90deg,#000a25fd,#000c2ccc); color:#fff;
+  box-shadow:0 8px 30px rgba(0,0,0,.2) inset
+}
+.avatar-wrap{ position:relative; z-index:1 }
+#perfilAvatar{
+  width:110px; height:110px; object-fit:cover; border-radius:999px;
+  border:3px solid rgba(255,255,255,.9); box-shadow:0 10px 24px rgba(0,0,0,.35); background:#14223f
+}
+.trocar-foto-btn{
+  position:absolute; right:-6px; bottom:-6px; display:flex; align-items:center; gap:6px;
+  background:#f4f4f4; color:#00133a; border-radius:999px; padding:6px 10px; cursor:pointer;
+  font-family:"Bebas Neue"; letter-spacing:.4px; box-shadow:0 10px 20px rgba(0,0,0,.25)
+}
+.perfil-head-info .titulo{ font-family:"Bebas Neue"; font-size:2.6rem; letter-spacing:1px; margin:0 0 4px }
+.perfil-head-info .sub{ opacity:.9; margin:0; font-size:1rem }
+
+.perfil-tabs{
+  flex:0 0 auto;
+  display:flex; align-items:center; gap:10px; padding:10px 14px; margin:10px 14px 0;
+  background:#f6f8ff; border-radius:14px; border:1px solid #eef1ff
+}
+.tab-btn{
+  border:none; background:#eef1ff; color:#00185c; padding:10px 16px; border-radius:999px; cursor:pointer;
+  font-family:"Bebas Neue"; letter-spacing:.8px; font-size:1.05rem
+}
+.tab-btn.active{ background:#00133a; color:#fff }
+.tab-btn.sair{ margin-left:auto; background:#e74c3c; color:#fff }
+
+/* Conteúdo rolável do modal */
+.perfil-body{ flex:1 1 auto; min-height:0; display:flex; flex-direction:column; }
+.tab-container{ flex:1 1 auto; min-height:0; }
+.tab-pane{ display:none; height:100%; overflow:auto; padding:14px 22px 8px }
+.tab-pane.active{ display:block }
+
+.section-wrap{ padding:2px 0 8px }
+.perfil-info p{ margin:.45rem 0; font-size:1.02rem; color:#333 }
+.perfil-info strong{ color:#0b156e; font-family:"Bebas Neue"; letter-spacing:.6px }
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px }
+@media (max-width:780px){ .grid-2{ grid-template-columns:1fr } }
+
+.btn-row{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px }
+.btn{ border:none; padding:12px 18px; border-radius:12px; cursor:pointer; font-family:"Zain"; box-shadow:1px 1px 6px #00000022 }
+.btn.primary{ background:linear-gradient(90deg,#000a25fd,#000c2ccc); color:#fff }
+.btn.ghost{ background:#f3f3f3; color:#00185c }
+
+.logincontainer {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10002;
+  width: min(420px, 92vw);
+  padding: 28px 26px 24px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.06)),
+              linear-gradient(90deg, var(--azul1, #000a25fd), var(--azul2, #000c2ccc));
+  box-shadow: 0 24px 64px rgba(0,0,0,.40);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #f4f4f4;
+  backdrop-filter: blur(8px);
+}
+.logincontainer.abrir {
+  display: flex;
+  flex-direction: column;
+}
+.logincontainer h2 {
+  font-family: "Bebas Neue";
+  font-size: 2rem;
+  text-align: center;
+  margin: 4px 0 18px;
+  color: #fff;
+}
+.logincontainer h2::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 3px;
+  margin: 8px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a3ddff, #ffffff);
+  opacity: .9;
+}
+.logincontainer label {
+  display: block;
+  font-family: "Zain";
+  font-size: .95rem;
+  color: #d7e3ff;
+  margin: 10px 2px 6px;
+}
+.logincontainer input {
+  width: 100%;
+  padding: 12px 10px 10px;
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,.28);
+  border-radius: 10px 10px 0 0;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+.logincontainer button {
+  width: 100%;
+  padding: 14px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 1.02rem;
+  font-weight: 700;
+  font-family: "Zain";
+  color: #fff;
+  background: linear-gradient(90deg, var(--azul1, #000a25fd), var(--azul2, #000c2ccc));
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+}
+.forgot-password {
+  margin: 12px 0 2px;
+  font-size: .86rem;
+  color: #d7e3ff;
+  text-decoration: none;
+}
+
+
+/* Trava o scroll do body quando modal abrir */
+body.modal-open{ overflow:hidden }
+
+
+/* Formulários */
+.form-group{ display:flex; flex-direction:column; gap:6px; }
+.form-group label{
+  font-family:"Zain", system-ui;
+  font-size:1rem;
+  color:#00185c;
+}
+.form-group input{
+  border:none;
+  border-bottom:2px solid #d3d3d3;
+  padding:10px 6px;
+  outline:none;
+  background:transparent;
+  font-size:1rem;
+  color:#111;
+}
+.form-group input::placeholder{ color:#9aa1b6; }
+.form-group input:focus{
+  border-color:#00185c;
+  box-shadow:0 1px 0 0 #00185c;
+}
+
+.divider{
+  margin:14px 0 8px; padding:8px 0;
+  font-family:"Bebas Neue", system-ui;
+  color:#02001b; letter-spacing:.8px; font-size:1.2rem;
+  border-top:1px dashed #e3e3e3;
+}
+
+/* Botões */
+.btn-row{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px; flex-wrap:wrap; }
+.btn{
+  border:none;
+  padding:12px 18px;
+  border-radius:12px;
+  cursor:pointer;
+  font-family:"Zain", system-ui;
+  box-shadow:1px 1px 6px #00000022;
+  transition:transform .08s ease, filter .12s ease;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn:focus-visible{ outline:2px solid #ffd777; outline-offset:2px; }
+.btn.primary{
+  background:linear-gradient(90deg,#000a25,#000c2c);
+  color:#fff;
+}
+.btn.ghost{
+  background:#f3f3f3;
+  color:#00185c;
+}
+
+/* Preferência do usuário: menos animação */
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; animation:none !important; }
+}
+
+
+.botao-profissionais {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(90deg, #1f1f5a, #3a3acb);
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
+    border-radius: 35px;
+    border: 2px solid transparent;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25), 0 0 10px rgba(58,58,203,0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.botao-profissionais::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    transform: skewX(-25deg);
+    transition: all 0.5s ease;
+}
+
+.botao-profissionais:hover::before {
+    left: 125%;
+}
+
+.botao-profissionais:hover {
+    background: linear-gradient(90deg, #3a3acb, #1f1f5a);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 20px rgba(58,58,203,0.8);
+    border-color: #fff;
+}
+
+/* Backdrop clicável para o login */
+.login-backdrop{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:10001; }
+.login-backdrop.abrir{ display:block; }
+
+/* Menu compacto do perfil (quando logado) */
+.perfil-menu{
+  position: fixed;
+  top: 20px;            /* ajusta conforme sua header */
+  right: 10px;
+  background:#fff;
+  border:1px solid #e8eaf7;
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.20);
+  z-index:10005;
+  min-width: 220px;
+  padding:8px;
+  display:none;
+}
+.perfil-menu.abrir{ display:block; }
+.perfil-menu a{
+  display:block;
+  padding:10px 12px;
+  border-radius:10px;
+  color:#00185c;
+  text-decoration:none;
+  font-family:"Satoshi";
+  font-size:0.98rem;
+}
+.perfil-menu a:hover{ background:#f6f8ff; }
+.perfil-menu .sair{ color:#b32828; }
+
+  </style>
+
+
+</head>
+
+<body>
+
+  <header>
+    <div class="header-top">
+      <nav class="navbar">
+        <ul class="nav-menu">
+          <li><a href="sobre.html">SOBRE NÓS</a></li>
+          <li><a href="profissionais.php">SERVIÇOS</a></li>
+        </ul>
+      </nav>
+      <div class="logo">
+        <img width="250px" src="logo.png" alt="logo">
+      </div>
+      <div class="icons-search">
+        <div class="icons">
+          <a class="icons" id="btnPerfil" href="#"><i class="bi bi-person"></i></a>
+        </div>
+        <!-- Backdrop do login (clique fora para fechar) -->
+<div id="loginBackdrop" class="login-backdrop"></div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MODAL LOGIN (visual igual delivery) ===== -->
+<div class="logincontainer" id="loginContainer">
+  <h2>Login</h2>
+  <form id="loginForm" method="POST">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="senha" required>
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <a href="esqueci_senha_cliente.html" class="forgot-password">Esqueci minha senha</a>
+  <p style="color:#d3d3d3; margin-top:12px; font-size:.9rem">
+    Não tem conta? 
+    <a href="cadcliente.html" style="color:#fff; text-decoration:none">Cadastre-se</a>
+  </p>
+</div>
+
+
+
+
+<!-- ===== MODAL PERFIL ===== -->
+<div class="modal-perfil" id="modalPerfil">
+  <div class="perfil-conteudo" role="dialog" aria-modal="true">
+    <button class="fechar" id="fecharPerfil" aria-label="Fechar">&times;</button>
+
+    <div class="perfil-header">
+      <div class="avatar-wrap">
+        <img id="perfilAvatar" src="avatar.png" alt="Foto do Perfil">
+        <label for="inputFoto" class="trocar-foto-btn"><i class="bi bi-camera"></i><span>Trocar foto</span></label>
+        <input id="inputFoto" type="file" accept="image/*" hidden>
+      </div>
+      <div class="perfil-head-info">
+        <p class="titulo" id="perfilHandle">@perfil</p>
+        <p class="">Gerencie seus dados</p>
+      </div>
+    </div>
+
+    <div class="perfil-body">
+      <div class="perfil-tabs">
+        <button class="tab-btn active" data-tab="visao">Resumo</button>
+        <button class="tab-btn" data-tab="editar">Editar</button>
+        <button class="tab-btn sair" id="btnSair">Sair</button>
+      </div>
+
+      <div class="tab-container">
+        <div class="tab-pane active" id="tab-visao">
+          <div class="section-wrap perfil-info">
+            <p><strong>Nome:</strong> <span id="perfilNome">Usuário</span></p>
+            <p><strong>E-mail:</strong> <span id="perfilEmail">usuario@exemplo.com</span></p>
+            <p><strong>Tipo:</strong> <span id="perfilTipo">Cliente</span></p>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-editar">
+          <form id="formEditarPerfil" class="section-wrap" method="post" autocomplete="off">
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="editNome">Nome</label>
+                <input type="text" id="editNome" name="nome" placeholder="Seu nome completo">
+              </div>
+              <div class="form-group">
+                <label for="editEmail">E-mail</label>
+                <input type="email" id="editEmail" name="email" placeholder="seu@email.com">
+              </div>
+            </div>
+
+            <h4 class="divider" style="margin:18px 0 6px; font-family:'Bebas Neue'; letter-spacing:.6px; color:#0b156e">Segurança</h4>
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="editSenha">Nova senha</label>
+                <input type="password" id="editSenha" name="senha" placeholder="••••••••">
+              </div>
+              <div class="form-group">
+                <label for="editSenha2">Confirmar nova senha</label>
+                <input type="password" id="editSenha2" name="senha2" placeholder="••••••••">
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn ghost" id="btnCancelarEdicao">Cancelar</button>
+              <button type="submit" class="btn primary">Salvar alterações</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <div class="spline-container">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js"></script>
+<spline-viewer loading-anim-type="spinner-small-dark" url="https://prod.spline.design/4WW-e1ctdG9etwbl/scene.splinecode"></spline-viewer>
+  </div>
+
+  <!-- Wave SVG -->
+  <div class="wave">
+    <svg viewBox="0 0 1440 100" width="100%" height="100" preserveAspectRatio="none" style="display:block">
+      <path d="M0,40 C480,120 960,0 1440,60 L1440,100 L0,100 Z" fill="#fff"/>
+    </svg>
+  </div>
+
+  <!-- Services -->
+  <section class="services">
+    <h2>Nossos serviços</h2>
+    <div class="service-cards">
+      <div class="service">
+        <img src="básico.png">
+        <h3>Serviços básicos</h3>
+        <p>Serviços de curta duração, voltados a necessidades imediatas. Práticos, acessíveis e ideais para soluções rápidas.</p>
+        <a href="basicos.html">Saiba mais</a>
+      </div>
+
+      <div class="service">
+        <img src="inter.png">
+        <h3>Serviços intermediários</h3>
+        <p>Demandas de média duração, que exigem maior dedicação. Equilibram tempo e valor, garantindo resultados consistentes.</p>
+        <a href="intermediarios.html">Saiba mais</a>
+      </div>
+      <div class="service">
+        <img src="avan.png">
+        <h3>Serviços avançados</h3>
+        <p>Serviços de longa duração ou contínuos. Representam investimento em stabilidade, confiança e acompanhamento completo.</p>
+        <a href="avancado.html">Saiba mais</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professionals -->
+  <section class="professionals">
+    <div class="spline-container">
+       <spline-viewer url="https://prod.spline.design/oE7Z9IQjVTAmUJ9x/scene.splinecode"></spline-viewer>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.57/build/spline-viewer.js"></script>
+    </div>
+    <div class="content">
+      <h2>Conheça nossos profissionais</h2>
+      <p>Por trás de cada serviço está a dedicação de especialistas preparados para oferecer qualidade. Nossos profissionais são cuidadosamente selecionados para garantir que você encontre a solução certa para suas necessidades, com responsabilidade e excelência em cada detalhe.</p>
+      <button>AGENDE UMA CONSULTA</button>
+    </div>
+  </section>
+
+  <!-- Subscriptions -->
+  <section class="subscriptions">
+    <h2>SERVIÇOS MAIS SOLICITADOS</h2> 
+      <div class="sub" style="--sub-img: url('aula.png')">
+        <div class="sub-content">
+          <h3>Aulas particulares</h3>
+          <p>Professores verificados para reforço e idiomas.</p>
+          <a href="#"><button>Conhecer mais</button></a>
+        </div>
+      </div>
+      <div class="sub" style="--sub-img: url('webdev.png')">
+        <div class="sub-content">
+          <h3>Desenvolvedores</h3>
+         <p>Sites e apps sob medida, do protótipo ao deploy.</p>
+          <a href="dev.html"><button>Conhecer mais</button></a>
+        </div>
+      </div>
+      <div class="sub" style="--sub-img: url('estetica.png')">
+        <div class="sub-content">
+          <h3>Estética</h3>
+       <p>Cuide de sua beleza com segurança e qualidade.</p>
+          <a href="estetica.php"><button>Conhecer mais</button></a>
+        </div>
+      </div>
+      <div class="sub" style="--sub-img: url('dellivery.png')">
+        <div class="sub-content">
+          <h3>Entregas</h3>
+          <p>Entrega de encomenda com rastreamento.</p>
+          <a href="manutencao.html"><button>Conhecer mais</button></a>
+        </div>
+      </div>
+      <div class="sub" style="--sub-img: url('tool.png')">
+        <div class="sub-content">
+          <h3>REFORMAS E REPAROS</h3>
+          <p>Elétrica e hidráulica com equipes confiáveis.</p>
+         <a href="reparo.html"><button>Conhecer mais</button></a>
+        </div>
+      </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+  <div class="panel">
+    <h2>Sobre a Trampay</h2>
+    <p>A Trampay é uma companhia de tecnologia focada em criar soluções que conectam pessoas 
+      e oportunidades de forma prática e inteligente. Nossa missão é simplificar a relação entre 
+      quem oferece e quem precisa de serviços, com eficiência, transparência e inovação.</p>
+    <p>Nossa visão está alinhada ao futuro do trabalho: flexível, acessível e sustentado pela
+       inovação. Mantemos o compromisso de evoluir constantemente, sempre priorizando a transparência,
+        a qualidade e o impacto positivo nas relações que ajudamos a construir.</p>
+
+    <a href="sobre.html" class="btn-blue">SAIBA MAIS</a>
+  </div>
+</section>
+<br>
+<br><br>
+
+<center><a href="profissionais.php" class="botao-profissionais">Conheça todos os profissionais</a></center>
+
+<br><br><br>
+  <!-- Resultados -->
+  <section class="resultados">
+    <div class="resultados-container">
+      <h2>Nossos números</h2>
+      <p>Resultados que refletem nossa dedicação e o impacto positivo que geramos.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>+500</h3>
+          <p>Profissionais cadastrados</p>
+        </div>
+        <div class="card">
+          <h3>+1.200</h3>
+          <p>Serviços realizados</p>
+        </div>
+        <div class="card">
+          <h3>+800</h3>
+          <p>Clientes satisfeitos</p>
+        </div>
+        <div class="card">
+          <h3>+10</h3>
+          <p>Categorias de serviços</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-title">Institucional</h3>
+        <ul class="footer-links">
+          <li><a href="sobre.html#quem-somos">Quem somos</a></li>
+          <li><a href="sobre.html#como-funciona">Como funciona</a></li>
+          <li><a href="#">Seja um parceiro</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3 class="footer-title">Ajuda</h3>
+        <ul class="footer-links">
+          <li><a href="#">Perguntas frequentes</a></li>
+          <li><a href="#">Políticas de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Fale conosco</a></li>
+        </ul>
+      </div>
+<div class="footer-section">
+  <h3 class="footer-title">Redes sociais</h3>
+  <div class="social-links">
+    <a class="social-btn ig" href="https://instagram.com/" target="_blank" aria-label="Instagram">
+      <i class="bi bi-instagram"></i>
+    </a>
+    <a class="social-btn yt" href="https://youtube.com/" target="_blank" aria-label="YouTube">
+      <i class="bi bi-youtube"></i>
+    </a>
+  </div>
+</div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Newsletter</h3>
+        <p>Inscreva-se para receber nossas novidades</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu e-mail" required>
+          <button type="submit">Inscrever</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Trampay. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+
+
+  <script>
+
+ /* ===== Helpers ===== */
+function bodyLock(lock){ document.body.classList.toggle('modal-open', !!lock); }
+function $(sel, root=document){ return root.querySelector(sel); }
+function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+
+/* ===== Estado global simples ===== */
+let USER_ATUAL = null;
+
+/* ===== Abre Perfil: se logado -> modal perfil; senão -> login ===== */
+async function abrirPerfil(){
+  try{
+    const r = await fetch('auth.php?action=status', { credentials:'include' });
+    const data = await r.json();
+    if(data && data.logged_in){
+      USER_ATUAL = data.user || null;
+      preencherPerfilUI(USER_ATUAL);
+      $('#modalPerfil').classList.add('abrir'); bodyLock(true);
+    }else{
+      $('#loginContainer').classList.add('abrir'); bodyLock(true);
+    }
+  }catch(e){
+    console.error('status error', e);
+    $('#loginContainer').classList.add('abrir'); bodyLock(true);
+  }
+}
+
+/* ===== Preencher UI com dados do usuário ===== */
+function preencherPerfilUI(u){
+  if(!u) return;
+  $('#perfilHandle').textContent = '@' + (u.nome || 'usuario').toLowerCase().replace(/\s+/g,'');
+  $('#perfilNome').textContent = u.nome || '';
+  $('#perfilEmail').textContent = u.email || '';
+  $('#perfilTipo').textContent = (u.tipo || u.user_type || 'Cliente');
+  $('#editNome').value = u.nome || '';
+  $('#editEmail').value = u.email || '';
+  if(u.foto_perfil) $('#perfilAvatar').src = u.foto_perfil;
+}
+
+/* ===== Eventos de abrir/fechar ===== */
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('#btnPerfil');
+  if(btn){ e.preventDefault(); abrirPerfil(); }
+});
+
+$('#fecharPerfil')?.addEventListener('click', ()=>{ $('#modalPerfil').classList.remove('abrir'); bodyLock(false); });
+$('#modalPerfil')?.addEventListener('click', (ev)=>{ if(ev.target === $('#modalPerfil')){ $('#modalPerfil').classList.remove('abrir'); bodyLock(false); } });
+
+/* ===== Tabs ===== */
+$all('.perfil-tabs .tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    if(btn.dataset.tab){
+      $all('.perfil-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+      $all('.tab-pane').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      $('#tab-'+btn.dataset.tab)?.classList.add('active');
+    }
+  });
+});
+
+/* ===== Login via POST (evita ?nome=... na URL) ===== */
+$('#loginForm')?.addEventListener('submit', async (ev)=>{
+  ev.preventDefault();
+  const fd = new FormData(ev.currentTarget);
+  try{
+    const r = await fetch('auth.php?action=login', { method:'POST', body: fd, credentials:'include' });
+    const data = await r.json();
+    if(data && data.ok){
+      // re-checa status e abre perfil preenchido
+      const s = await fetch('auth.php?action=status', { credentials:'include' });
+      const st = await s.json();
+      USER_ATUAL = st.user || null;
+      preencherPerfilUI(USER_ATUAL);
+      $('#loginContainer').classList.remove('abrir');
+      $('#modalPerfil').classList.add('abrir');
+      bodyLock(true);
+    }else{
+      alert(data?.msg || 'Não foi possível entrar.');
+    }
+  }catch(e){ console.error(e); alert('Erro ao tentar logar.'); }
+});
+
+/* ===== Logout ===== */
+$('#btnSair')?.addEventListener('click', async ()=>{
+  try{
+    await fetch('auth.php?action=logout', { method:'POST', credentials:'include' });
+  }catch(_){}
+  USER_ATUAL = null;
+  $('#modalPerfil').classList.remove('abrir');
+  bodyLock(false);
+});
+
+/* ===== Opcional: marcar ícone como logado no header ===== */
+async function marcarHeaderSeLogado(){
+  try{
+    const r = await fetch('auth.php?action=status', { credentials:'include' });
+    const data = await r.json();
+    if(data?.logged_in){
+      USER_ATUAL = data.user || null;
+      const btn = document.getElementById('btnPerfil');
+      if(btn) btn.innerHTML = '<i class="bi bi-person-check"></i>';
+    }
+  }catch(_){}
+}
+marcarHeaderSeLogado();
+
+function abrirLogin(){
+  document.getElementById('loginContainer')?.classList.add('abrir');
+}
+function fecharLogin(){
+  document.getElementById('loginContainer')?.classList.remove('abrir');
+}
+
+// Exemplo: botão para abrir (adicione onde quiser)
+document.querySelectorAll('[data-open-login]').forEach(btn=>{
+  btn.addEventListener('click', e=>{
+    e.preventDefault();
+    abrirLogin();
+  });
+});
+
+// Fechar ao clicar fora do modal
+document.addEventListener('click', e=>{
+  const modal = document.getElementById('loginContainer');
+  if(!modal) return;
+  if(e.target === modal){ fecharLogin(); }
+});
+
+
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('.header-top');
+  if (window.scrollY > 30) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+const $inFoto = document.getElementById('inputFoto');
+$inFoto?.addEventListener('change', async (ev)=>{
+  const file = ev.target.files?.[0];
+  if(!file){ return; }
+
+  // validações básicas
+  if(!file.type.startsWith('image/')){ alert('Escolha uma imagem.'); return; }
+  if(file.size > 4*1024*1024){ alert('Imagem muito grande (máx. 4MB).'); return; }
+
+  const fd = new FormData();
+  fd.append('foto', file);
+
+  try{
+    const r = await fetch('api/perfil_upload_avatar.php', {
+      method:'POST',
+      body: fd,
+      credentials:'include'
+    });
+    const j = await r.json();
+    if(!j.ok){ alert(j.msg || 'Falha ao enviar foto.'); return; }
+
+    // atualiza preview imediatamente
+    const url = j.url + (j.url.includes('?') ? '&' : '?') + 't=' + Date.now();
+    document.getElementById('perfilAvatar').src = url;
+
+    // atualiza estado local (se você usa USER_ATUAL)
+    if(typeof USER_ATUAL === 'object' && USER_ATUAL){
+      USER_ATUAL.foto_perfil = j.url;
+    }
+
+    alert('Foto atualizada com sucesso!');
+  }catch(e){
+    console.error(e);
+    alert('Erro ao enviar. Tente novamente.');
+  }finally{
+    ev.target.value = ''; // limpa input
+  }
+});
+
+</script>
+
+
+  
+</body>
+</html>

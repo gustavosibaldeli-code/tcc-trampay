@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termos de Uso • Trampay</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Zain:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --tp-blue-1:#000a25fd;
+  --tp-blue-2:#000c2ccc;
+  --tp-light:#f4f6ff;
+  --tp-dark:#00133a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Zain",sans-serif;
+  background:#f7f9ff;
+  color:#1c2233;
+}
+
+/* ==== HERO ===== */
+.hero{
+  background:linear-gradient(120deg,var(--tp-blue-1),var(--tp-blue-2));
+  padding:70px 20px 100px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 70% 30%,rgba(255,255,255,0.08),transparent 70%);
+  animation:shine 12s linear infinite;
+}
+@keyframes shine{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.hero img{
+  width:120px;
+  height:auto;
+  margin-bottom:14px;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.4));
+}
+.hero h1{
+  font-family:"Bebas Neue";
+  font-size:3.4rem;
+  color:#fff;
+  letter-spacing:2px;
+}
+.hero p{
+  color:#e6ecff;
+  font-size:1.2rem;
+  margin-top:8px;
+  opacity:.92;
+}
+.toc{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.toc a{
+  text-decoration:none;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.3);
+  padding:10px 16px;
+  border-radius:999px;
+  font-family:"Zain";
+  font-size:0.95rem;
+  background:rgba(255,255,255,.05);
+  transition:.25s;
+}
+.toc a:hover{background:rgba(255,255,255,.2)}
+
+/* ==== CONTENT ===== */
+.container{
+  max-width:960px;
+  margin:-60px auto 60px;
+  padding:0 18px;
+}
+.card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  padding:32px 26px;
+}
+h3.section{
+  font-family:"Bebas Neue";
+  font-size:2rem;
+  color:var(--tp-dark);
+  margin:26px 0 8px;
+}
+p{font-size:1.08rem;line-height:1.55;margin-bottom:10px;color:#2b2f3e}
+.badge{
+  background:#f0f3ff;
+  color:#000a25;
+  font-size:.9rem;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:8px;
+  border:1px solid #e0e6ff;
+}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--tp-blue-2)}
+.muted{color:#666;font-size:.9rem;margin-top:4px}
+
+/* ==== CTA ===== */
+.cta{
+  margin-top:36px;
+  text-align:right;
+}
+.btn{
+  border:none;
+  padding:12px 20px;
+  border-radius:14px;
+  font-size:1rem;
+  font-family:"Zain";
+  cursor:pointer;
+  transition:.2s;
+}
+.btn-primary{
+  background:linear-gradient(90deg,var(--tp-blue-1),var(--tp-blue-2));
+  color:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+.btn-ghost{
+  background:#f1f3f9;
+  color:var(--tp-dark);
+  margin-right:10px;
+  border:1px solid #d4d9ec;
+}
+.btn:hover{transform:translateY(-2px)}
+
+/* Responsivo */
+@media(max-width:600px){
+  .hero h1{font-size:2.4rem}
+  .hero img{width:90px}
+}
+</style>
+</head>
+
+<body>
+<section class="hero">
+  <img src="logo.png" alt="Trampay Logo">
+  <h1>Termos de Uso & Política de Privacidade</h1>
+  <p>Seu compromisso com a transparência, segurança e confiança na plataforma.</p>
+  <nav class="toc">
+    <a href="#aceite">Aceitação</a>
+    <a href="#dados">Dados e Finalidades</a>
+    <a href="#usuarios">Responsabilidades</a>
+    <a href="#direitos">Direitos das Partes</a>
+    <a href="#alteracoes">Alterações</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</section>
+
+<div class="container">
+  <article class="card">
+    <div class="badge"><span class="dot"></span> Versão 1.0 • Atualizado periodicamente</div>
+    <div class="muted">Aceite eletrônico válido conforme o art. 10, §2º da MP 2.200-2/2001 (ICP-Brasil).</div>
+
+    <section id="aceite">
+      <h3 class="section">1. Aceitação dos Termos</h3>
+      <p>Ao criar uma conta na plataforma Trampay, o usuário confirma estar de acordo com todas as condições descritas neste documento. O aceite eletrônico é registrado no banco de dados para comprovação de consentimento.</p>
+    </section>
+
+    <section id="dados">
+      <h3 class="section">2. Coleta e Uso de Dados</h3>
+      <p>As informações pessoais são utilizadas exclusivamente para viabilizar a operação da plataforma, comunicação entre usuários e cumprimento de obrigações legais. A Trampay adota padrões técnicos de criptografia e armazenamento seguros.</p>
+    </section>
+
+    <section id="usuarios">
+      <h3 class="section">3. Responsabilidades do Usuário</h3>
+      <p>O usuário compromete-se a fornecer dados verdadeiros, manter suas informações atualizadas e utilizar a plataforma de maneira ética, sem fins fraudulentos ou abusivos. É proibido o compartilhamento de contas ou práticas que violem a LGPD.</p>
+    </section>
+
+    <section id="direitos">
+      <h3 class="section">4. Direitos do Profissional e do Cliente</h3>
+      <p>Profissionais podem divulgar seus serviços e portfólios, enquanto clientes têm direito a contratar, cancelar e avaliar. As avaliações devem ser verídicas e respeitosas. A Trampay pode moderar conteúdos que contrariem as políticas internas.</p>
+    </section>
+
+    <section id="alteracoes">
+      <h3 class="section">5. Alterações</h3>
+      <p>Estes termos podem ser modificados para atender mudanças legais ou melhorias do serviço. Quando houver atualização significativa, o novo aceite será solicitado na próxima autenticação do usuário.</p>
+    </section>
+
+    <section id="contato">
+      <h3 class="section">6. Contato</h3>
+      <p>Dúvidas sobre privacidade ou uso? Fale com a equipe pelo e-mail <strong>suporte@trampay.com</strong>.</p>
+    </section>
+
+    <div class="cta">
+      <button id="btn-voltar" class="btn btn-ghost">Voltar</button>
+      <button class="btn btn-primary" onclick="document.getElementById('btn-voltar').click()">Ok, entendi</button>
+    </div>
+  </article>
+</div>
+
+<script>
+(function(){
+  const params=new URLSearchParams(location.search);
+  const ret=params.get('return');
+  const btn=document.getElementById('btn-voltar');
+  btn.addEventListener('click',e=>{
+    e.preventDefault();
+    if(ret){location.href=decodeURIComponent(ret);return;}
+    if(document.referrer){location.href=document.referrer;return;}
+    if(history.length>1){history.back();return;}
+    location.href='homepage.html';
+  });
+})();
+</script>
+</body>
+</html>

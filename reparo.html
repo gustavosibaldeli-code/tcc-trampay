@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilo3.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="icon" href="">>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trampay</title>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Zain:wght@200;300;400;700;800;900&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: dimgrey;
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #000000;
+            border-radius: 50px;
+        }
+
+        header {
+            font-family: "Bacasime Antique", serif;
+            font-size: 10px;
+            font-style: normal;
+            width: 100%;
+            height: 20px;
+            color: rgb(0, 0, 0);
+            margin-top: -22px;
+        }
+
+        .header-top {
+            background-color: #082070;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: -130px;
+            position: fixed;
+            z-index: 10;
+            height: 120px;
+            padding-top: 35px;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: "Bacasime Antique", serif;
+            font-size: 55px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: -50px;
+        }
+
+        .icons-search {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            z-index: 7;
+            font-size: 20px;
+            padding-right: 20px;
+            margin-top: -30px;
+        }
+
+        .search-cart {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .search-cart input {
+            font-family: "Raleway", sans-serif;
+            width: 100px;
+            padding: 2px;
+            background: none;
+            border: none;
+            color: white;
+            outline: none;
+            border-radius: 0;
+            margin-right: 5px;
+            text-decoration: underline;
+
+        }
+
+        .search-cart input::placeholder {
+            color: white;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Adjust gap between icons */
+            color: white;
+        }
+
+        .icons i {
+            font-size: 25px;
+            /* Icon size */
+            cursor: pointer;
+        }
+
+        /* Nav Menu */
+        .navbar {
+            display: flex;
+            justify-content: center;
+
+
+            color: white;
+
+            z-index: 100000;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin-top: 2%;
+        }
+
+
+        .nav-menu a {
+            font-size: 20px;
+            font-family: Bebas Neue;
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+        }
+
+    main h2 {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+
+    main h3 {
+      margin-top: 10px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .botao-trocar {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      padding: 10px 15px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .titulo-painel {
+        font-family: Bebas Neue;
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .painel-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .painel {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .painel.ativo {
+      display: flex;
+    }
+
+    .item {
+      width: 150px;
+      text-align: center;
+    }
+
+    .item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .legenda {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    .navegacao {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .navegacao button {
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    main{
+        padding-top: 1%;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      height: 500px;
+      background: linear-gradient(to bottom,  #082070, #004f9e);
+      color: white;
+      border-radius: 20px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 60px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      margin-top: 120px;
+    }
+
+    .container img {
+      height: 100%;
+      object-fit: contain;
+      margin-bottom: -5px;
+    }
+
+    .text-block {
+      margin-left: 40px;
+      padding-bottom: 40px;
+      flex: 1;
+    }
+
+    .text-block h1 {
+        font-family: Bebas Neue;
+      font-size: 48px;
+      font-weight: bold;
+      margin: 0 0 20px;
+      line-height: 1.2;
+    }
+
+    .text-block p {
+      font-size: 22px;
+      line-height: 1.5;
+      margin: 8px 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 40px 20px;
+      }
+
+      .container img {
+        height: auto;
+        max-height: 300px;
+        margin-bottom: 0;
+      }
+
+      .text-block {
+        margin-left: 0;
+        margin-top: 20px;
+        padding-bottom: 0;
+        text-align: center;
+      }
+    }
+    
+
+            .footer {
+            background: radial-gradient(#040c7c,#04094e);
+            color: #ffffff;
+            padding: 40px 0;
+            font-family: ZAIN;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .footer-section {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-family: ZAIN;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #333333;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover img {
+            transform: scale(1.2);
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 70%;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #333333;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+
+    
+
+  </style>
+</head>
+<body>
+
+    <header>
+
+        <div class="header-top">
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="landing.html">INÍCIO</a></li>
+                    <li><a href="profilecview.html">PERFIL</a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <img width="300px" src="logo.png" alt="logo">
+            </div>
+            <div class="icons-search">
+
+                <div class="icons">
+                    <a class="icons" ><i onclick="abrirlogin()" class="bi bi-person"></i></a>
+                    <i class="bi bi-heart"></i>
+                </div>
+            </div>
+            </div>
+
+      <div class="container">
+    <img src="manutenção.jpg" alt="Profissional da saúde">
+    <div class="text-block">
+      <h1>CONHEÇA OS<br>NOSSOS<br>PROFISSIONAIS<br>DA SAÚDE</h1>
+      <p>TEXTO TEXTO</p>
+      <p>TEXTO TEXTO</p>
+      <p>TEXTO TEXTO</p>
+    </div>
+  </div>
+
+
+  <main>
+   <div class="titulo-painel">PROFISSIONAIS POR LOCALIZAÇÃO</div>
+
+  <div class="painel-wrapper">
+    <div class="navegacao">
+      <button onclick="mostrarGrupo('anterior')">←</button>
+
+      <div class="painel" id="grupo1loc">
+        <div class="item"><a href="página1.html"><img src="p.jpg" alt="1"></a><div class="legenda">profissão1</div></div>
+        <div class="item"><a href="página2.html"><img src="p1.jpg" alt="2"></a><div class="legenda">profissão2</div></div>
+        <div class="item"><a href="página3.html"><img src="p2.jpg" alt="3"></a><div class="legenda">profissão3</div></div>
+        <div class="item"><a href="página4.html"><img src="p3.jpg" alt="4"></a><div class="legenda">profissão4</div></div>
+        <div class="item"><a href="página5.html"><img src="p4.jpg" alt="5"></a><div class="legenda">profissão5</div></div>
+      </div>
+
+      <div class="painel ativo" id="grupo2loc">
+        <div class="item"><a href="página6.html"><img src="p5.jpg" alt="6"></a><div class="legenda">profissão6</div></div>
+        <div class="item"><a href="página7.html"><img src="p6.jpg" alt="7"></a><div class="legenda">profissão7</div></div>
+        <div class="item"><a href="página8.html"><img src="p7.jpg" alt="8"></a><div class="legenda">profissão8</div></div>
+        <div class="item"><a href="página9.html"><img src="p8.jpg" alt="9"></a><div class="legenda">profissão9</div></div>
+        <div class="item"><a href="página10.html"><img src="p9.jpg" alt="10"></a><div class="legenda">profissão10</div></div>
+      </div>
+
+      <div class="painel" id="grupo3loc">
+        <div class="item"><a href="página11.html"><img src="pessoa11.jpg" alt="11"></a><div class="legenda">profissão11</div></div>
+        <div class="item"><a href="página12.html"><img src="pessoa12.jpg" alt="12"></a><div class="legenda">profissão12</div></div>
+        <div class="item"><a href="página13.html"><img src="pessoa13.jpg" alt="13"></a><div class="legenda">profissão13</div></div>
+        <div class="item"><a href="página14.html"><img src="pessoa14.jpg" alt="14"></a><div class="legenda">profissão14</div></div>
+        <div class="item"><a href="página15.html"><img src="pessoa15.jpg" alt="15"></a><div class="legenda">profissão15</div></div>
+      </div>
+
+      <button onclick="mostrarGrupoLOC('proximo')">→</button>
+    </div>
+  </div>
+  </main>
+
+ 
+
+ <main>
+   <div class="titulo-painel">PROFISSIONAIS POR AVALIAÇÃO</div>
+
+  <div class="painel-wrapper">
+    <div class="navegacao">
+      <button onclick="mostrarGrupo('anterior')">←</button>
+
+      <div class="painel" id="grupo1ava">
+        <div class="item"><a href="página1.html"><img src="pessoa1.jpg" alt="1"></a><div class="legenda">profissão1</div></div>
+        <div class="item"><a href="página2.html"><img src="pessoa2.jpg" alt="2"></a><div class="legenda">profissão2</div></div>
+        <div class="item"><a href="página3.html"><img src="pessoa3.jpg" alt="3"></a><div class="legenda">profissão3</div></div>
+        <div class="item"><a href="página4.html"><img src="pessoa4.jpg" alt="4"></a><div class="legenda">profissão4</div></div>
+        <div class="item"><a href="página5.html"><img src="pessoa5.jpg" alt="5"></a><div class="legenda">profissão5</div></div>
+      </div>
+
+      <div class="painel ativo" id="grupo2ava">
+        <div class="item"><a href="página6.html"><img src="pessoa6.jpg" alt="6"></a><div class="legenda">profissão6</div></div>
+        <div class="item"><a href="página7.html"><img src="pessoa7.jpg" alt="7"></a><div class="legenda">profissão7</div></div>
+        <div class="item"><a href="página8.html"><img src="pessoa8.jpg" alt="8"></a><div class="legenda">profissão8</div></div>
+        <div class="item"><a href="página9.html"><img src="pessoa9.jpg" alt="9"></a><div class="legenda">profissão9</div></div>
+        <div class="item"><a href="página10.html"><img src="pessoa10.jpg" alt="10"></a><div class="legenda">profissão10</div></div>
+      </div>
+
+      <div class="painel" id="grupo3ava">
+        <div class="item"><a href="página11.html"><img src="pessoa11.jpg" alt="11"></a><div class="legenda">profissão11</div></div>
+        <div class="item"><a href="página12.html"><img src="pessoa12.jpg" alt="12"></a><div class="legenda">profissão12</div></div>
+        <div class="item"><a href="página13.html"><img src="pessoa13.jpg" alt="13"></a><div class="legenda">profissão13</div></div>
+        <div class="item"><a href="página14.html"><img src="pessoa14.jpg" alt="14"></a><div class="legenda">profissão14</div></div>
+        <div class="item"><a href="página15.html"><img src="pessoa15.jpg" alt="15"></a><div class="legenda">profissão15</div></div>
+      </div>
+
+      <button onclick="mostrarGrupoAVA('proximo')">→</button>
+    </div>
+  </div>
+  </main>
+
+  <br>
+
+              <hr class="divider">
+
+            <footer class="footer">
+                <div class="footer-container">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Links Rápidos</h3>
+                        <ul class="footer-links">
+                            <li><a href="sobre.html">Sobre Nós</a></li>
+                            <li><a href="profissionais.php">Serviços</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Siga-nos</h3>
+                         <div class="social-links">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="X (Twitter)"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+    </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3 class="footer-title">Assine nossa Newsletter</h3>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Seu email" required>
+                            <button type="submit">Assinar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Trampay. Todos os direitos reservados.</p>
+                </div>
+
+                <div id="perfilModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);justify-content:center;align-items:center;z-index:999;">
+  <div style="background:#fff;padding:20px;border-radius:10px;width:300px;text-align:center;">
+    <img id="perfilFoto" src="default.png" alt="Foto" style="width:80px;height:80px;border-radius:50%;margin-bottom:10px;">
+    <h3 id="perfilNome">Usuário</h3>
+    <p id="perfilEmail">email@exemplo.com</p>
+    <p id="perfilCpf">CPF</p>
+    <button onclick="fecharPerfil()" style="margin-top:10px;padding:10px;background:#082070;color:#fff;border:none;border-radius:5px;">Fechar</button>
+  </div>
+</div>
+
+            </footer>
+
+
+</body>
+
+<script>
+  const gruposAVA = ['grupo1ava', 'grupo2ava', 'grupo3ava'];
+  const gruposLOC = ['grupo1loc', 'grupo2loc', 'grupo3loc'];
+
+  function mostrarGrupoAVA(direcao) {
+    const wrapperAVA = document.querySelectorAll('.titulo-painel');
+    let atual = null;
+
+    // Pega o painel de avaliação correto
+    wrapperAVA.forEach((titulo) => {
+      if (titulo.textContent.includes("AVALIAÇÃO")) {
+        const wrapper = titulo.nextElementSibling;
+        atual = wrapper.querySelector('.painel.ativo');
+      }
+    });
+
+    let idx = gruposAVA.indexOf(atual.id);
+
+    if (direcao === 'proximo') {
+      idx = (idx + 1) % gruposAVA.length;
+    } else {
+      idx = (idx - 1 + gruposAVA.length) % gruposAVA.length;
+    }
+
+    atual.classList.remove('ativo');
+    document.getElementById(gruposAVA[idx]).classList.add('ativo');
+  }
+
+  function mostrarGrupoLOC(direcao) {
+    const wrapperLOC = document.querySelectorAll('.titulo-painel');
+    let atual = null;
+
+    // Pega o painel de localização correto
+    wrapperLOC.forEach((titulo) => {
+      if (titulo.textContent.includes("LOCALIZAÇÃO")) {
+        const wrapper = titulo.nextElementSibling;
+        atual = wrapper.querySelector('.painel.ativo');
+      }
+    });
+
+    let idx = gruposLOC.indexOf(atual.id);
+
+    if (direcao === 'proximo') {
+      idx = (idx + 1) % gruposLOC.length;
+    } else {
+      idx = (idx - 1 + gruposLOC.length) % gruposLOC.length;
+    }
+
+    atual.classList.remove('ativo');
+    document.getElementById(gruposLOC[idx]).classList.add('ativo');
+  }
+
+(function(){
+  const modal = document.getElementById('perfilModal');
+  const btnPerfil = document.querySelector('.bi-person');
+
+  btnPerfil.addEventListener('click', async function(e){
+    e.preventDefault();
+    try {
+      const res = await fetch('auth.php?action=status', { credentials:'include' });
+      const data = await res.json();
+      if(data.logged_in){
+        const u = data.user;
+        document.getElementById('perfilNome').textContent  = u.nome || 'Usuário';
+        document.getElementById('perfilEmail').textContent = u.email || '';
+        document.getElementById('perfilCpf').textContent   = u.cpf || '';
+        document.getElementById('perfilFoto').src         = u.foto || 'default.png';
+        modal.style.display = 'flex';
+      } else {
+        window.location.href = 'cadcliente.html';
+      }
+    } catch(err){
+      console.error('Erro ao verificar status:', err);
+      window.location.href = 'cadcliente.html';
+    }
+  });
+
+  window.fecharPerfil = function(){ modal.style.display = 'none'; };
+})();
+</script>
+
+
+
+</html>
